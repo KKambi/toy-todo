@@ -8,6 +8,9 @@ const indexRouter = require('./routes/index');
 
 const app = express();
 
+// 환경변수 설정
+require('dotenv').config();
+
 // view engine setup
 app.set('views', path.join(__dirname, 'public/html'));
 app.engine('html', require('ejs').renderFile);
