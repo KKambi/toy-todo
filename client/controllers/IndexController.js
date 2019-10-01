@@ -1,4 +1,4 @@
-const indexHTML = require('../public/html/indexHTML')
+const indexHTML = require('../src/indexHTML')
 
 class IndexController{
     constructor(headerContainer, mainContainer){
