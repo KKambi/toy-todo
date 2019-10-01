@@ -4,8 +4,16 @@ module.exports = {
         "commonjs": true,
         "es6": true
     },
-    "extends": "tui/es6",
+    "extends": "eslint:recommended",
+    "globals": {
+        "process": true,
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
     "parserOptions": {
+        "ecmaVersion": 2017,
         "sourceType": "module"
     },
+    "rules": {
+    }
 };
