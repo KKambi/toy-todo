@@ -21,6 +21,12 @@ module.exports = {
                 'sass-loader'
             ],
         },
+        {
+            test: /\.(gif|png|jpe?g|svg)$/i,
+            use: [
+                'file-loader'
+            ]
+        }
     ],
     plugins: [
         new CleanWebpackPlugin(['dist']),
