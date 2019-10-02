@@ -5,6 +5,10 @@ class SessionController {
         this.User = User
     }
 
+    async findUser(user){
+        return await this.User.find('user', user);
+    }
+
     encryptPassword(password){
         const [salt, encryptedPassword] = util_encrpytion.encrypt(password)
         return [salt, encryptedPassword]
