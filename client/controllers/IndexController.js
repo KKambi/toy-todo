@@ -3,18 +3,18 @@ class IndexController {
     constructor(headerContainer, mainContainer) {
         this.headerContainer = headerContainer;
         this.mainContainer = mainContainer;
-        this.api = "http://localhost:3000"
+        this.endpoint = "http://localhost:3001"  //client host
         this.routes = {
             '/': async () => {
-                const resJson = await this.get(`${this.api}/data/index.json`);
+                const resJson = await this.get(`${this.endpoint}/`);
                 this.render(resJson);
             },
-            '/search': async () => {
-                const resJson = await this.get(`${this.api}/data/search.json`);
+            '/users/find': async () => {
+                const resJson = await this.get(`${this.endpoint}/users/find`);
                 this.render(resJson);
             },
-            '/login': async () => {
-                const resJson = await this.get(`${this.api}/data/login.json`);
+            '/sessions/new': async () => {
+                const resJson = await this.get(`${this.endpoint}/sessions/new`);
                 this.render(resJson);
             },
             otherwise(path) {
@@ -40,13 +40,22 @@ class IndexController {
         })
 
         //웹페이지가 처음 로딩되었을 때
-        this.router('/');
+        // this.router('/');
     }
 
     async get(url) {
-        const response = await fetch(url, { method: "GET", Accept: "application/json" });
+        const response = await fetch(url, { 
+            method: "GET", 
+            headers: {
+                Accept: "application/json" 
+            }
+        });
         const data = await response.json();
         return data;
+    }
+
+    router(path) {
+        (this.routes[path] || this.routes.otherwise)(path);
     }
 
     render(data) {
@@ -55,10 +64,6 @@ class IndexController {
 
     renderHtml(html) {
         this.mainContainer.innerHTML = html;
-    }
-
-    router(path) {
-        (this.routes[path] || this.routes.otherwise)(path);
     }
 }
 
