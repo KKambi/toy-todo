@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/index.entry.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/nav_bar.entry.js");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -97,26 +97,15 @@ eval("//출처: https://poiemaweb.com/js-spa\r\nclass IndexController {\r\n    c
 
 /***/ }),
 
-/***/ "./src/index.entry.js":
-/*!****************************!*\
-  !*** ./src/index.entry.js ***!
-  \****************************/
+/***/ "./src/nav_bar.entry.js":
+/*!******************************!*\
+  !*** ./src/nav_bar.entry.js ***!
+  \******************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _nav_bar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./nav_bar */ \"./src/nav_bar.js\");\n/* harmony import */ var _nav_bar__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_nav_bar__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index */ \"./src/index.js\");\n/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_index__WEBPACK_IMPORTED_MODULE_1__);\n\r\n\n\n//# sourceURL=webpack:///./src/index.entry.js?");
-
-/***/ }),
-
-/***/ "./src/index.js":
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("const IndexController = __webpack_require__(/*! ../controllers/IndexController */ \"./controllers/IndexController.js\")\r\n\r\nconst headerContainer = document.getElementById(\"header-container\")\r\nconst mainContainer = document.getElementById(\"main-container\")\r\nconst controller = new IndexController(headerContainer, mainContainer)\r\ncontroller.init()\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _nav_bar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./nav_bar */ \"./src/nav_bar.js\");\n/* harmony import */ var _nav_bar__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_nav_bar__WEBPACK_IMPORTED_MODULE_0__);\n\n\n//# sourceURL=webpack:///./src/nav_bar.entry.js?");
 
 /***/ }),
 
@@ -125,9 +114,9 @@ eval("const IndexController = __webpack_require__(/*! ../controllers/IndexContro
   !*** ./src/nav_bar.js ***!
   \************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-eval("const header_container = document.getElementById(\"header-container\");\r\nheader_container.innerHTML = \r\n    `<nav id=\"navigation-container\">\r\n        <a href=\"/\">\r\n            HOME\r\n        </a>\r\n        <a href=\"/users/find\">\r\n            훔쳐보기\r\n        </a>\r\n        <a href=\"/sessions/new\">\r\n            로그인\r\n        </a>\r\n    </nav>`\n\n//# sourceURL=webpack:///./src/nav_bar.js?");
+eval("const header_container = document.getElementById(\"header-container\");\r\nheader_container.innerHTML = \r\n    `<nav id=\"navigation-container\">\r\n        <a href=\"/\">\r\n            HOME\r\n        </a>\r\n        <a href=\"/users/find\">\r\n            훔쳐보기\r\n        </a>\r\n        <a href=\"/sessions/new\">\r\n            로그인\r\n        </a>\r\n    </nav>`\r\n\r\nconst IndexController = __webpack_require__(/*! ../controllers/IndexController */ \"./controllers/IndexController.js\")\r\nconst headerContainer = document.getElementById(\"header-container\")\r\nconst mainContainer = document.getElementById(\"main-container\")\r\nconst controller = new IndexController(headerContainer, mainContainer)\r\ncontroller.init()\n\n//# sourceURL=webpack:///./src/nav_bar.js?");
 
 /***/ })
 

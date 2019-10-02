@@ -3,7 +3,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
     entry: {
-        index: './src/index.entry.js'
+        nav_bar: './src/nav_bar.entry.js'
     },
     output: {
         path: path.resolve(__dirname, 'public/javascripts'),  //산출물이 위치할 경로
