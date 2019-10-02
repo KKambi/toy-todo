@@ -3,7 +3,7 @@ class NavigationController {
     constructor(headerContainer, mainContainer) {
         this.headerContainer = headerContainer;
         this.mainContainer = mainContainer;
-        this.endpoint = "http://localhost:3001"  //client host
+        this.endpoint = "http://localhost:3001"  //client
         this.routes = {
             '/': async () => {
                 const resJson = await this.get(`${this.endpoint}/`);
@@ -30,7 +30,7 @@ class NavigationController {
             this.router(event.state.path);
         })
 
-        //라우팅 이벤트 핸들러 설정
+        //a 태그에 대한 라우팅 이벤트 핸들러 설정
         this.headerContainer.addEventListener("click", event => {
             if (!event.target || event.target.nodeName !== 'A') return;
             event.preventDefault();

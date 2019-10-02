@@ -81,31 +81,31 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/index.entry.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/entry/index.entry.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/index.entry.js":
-/*!****************************!*\
-  !*** ./src/index.entry.js ***!
-  \****************************/
+/***/ "./src/entry/index.entry.js":
+/*!**********************************!*\
+  !*** ./src/entry/index.entry.js ***!
+  \**********************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index */ \"./src/index.js\");\n/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_index__WEBPACK_IMPORTED_MODULE_0__);\n\n\n//# sourceURL=webpack:///./src/index.entry.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _html_insertIndex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../html/insertIndex */ \"./src/html/insertIndex.js\");\n/* harmony import */ var _html_insertIndex__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_html_insertIndex__WEBPACK_IMPORTED_MODULE_0__);\n\n\n//# sourceURL=webpack:///./src/entry/index.entry.js?");
 
 /***/ }),
 
-/***/ "./src/index.js":
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
+/***/ "./src/html/insertIndex.js":
+/*!*********************************!*\
+  !*** ./src/html/insertIndex.js ***!
+  \*********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("const main_container = document.getElementById(\"main-container\");\r\nmain_container.innerHTML = \r\n    `<h1>홈</h1>\r\n    <p>Index Page</p>`\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("const mainContainer = document.getElementById(\"main-container\");\r\nmainContainer.innerHTML = \r\n    `<h1>홈</h1>\r\n    <p>Index Page</p>`\n\n//# sourceURL=webpack:///./src/html/insertIndex.js?");
 
 /***/ })
 

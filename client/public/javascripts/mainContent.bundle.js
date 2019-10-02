@@ -81,31 +81,42 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/entry/login.entry.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/entry/mainContent.entry.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/entry/login.entry.js":
-/*!**********************************!*\
-  !*** ./src/entry/login.entry.js ***!
-  \**********************************/
+/***/ "./src/controllers/LoginController.js":
+/*!********************************************!*\
+  !*** ./src/controllers/LoginController.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("\r\nclass LoginController{\r\n    constructor(mainContainer){\r\n        this.mainContainer = mainContainer\r\n        this.url = \"http://localhost:3000/sessions/create\" //api login url\r\n    }\r\n\r\n    init(){\r\n        //form button에 대한 이벤트 핸들러 설정\r\n        this.mainContainer.addEventListener(\"click\", event => {\r\n            if (!event.target || event.target.id !== \"login-button\") return;\r\n            event.preventDefault();   \r\n            this.login(this.url)\r\n        })\r\n    }\r\n\r\n    async login(url){\r\n        const response = await fetch(url, { \r\n            method: \"POST\",\r\n            body: {\r\n                user: \"admin\",\r\n                password: \"123123\"\r\n            }\r\n        });\r\n        const data = await response.json();\r\n        return data;\r\n\r\n    }\r\n}\r\n\r\nmodule.exports = LoginController\n\n//# sourceURL=webpack:///./src/controllers/LoginController.js?");
+
+/***/ }),
+
+/***/ "./src/entry/mainContent.entry.js":
+/*!****************************************!*\
+  !*** ./src/entry/mainContent.entry.js ***!
+  \****************************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _html_insertLogin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../html/insertLogin */ \"./src/html/insertLogin.js\");\n/* harmony import */ var _html_insertLogin__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_html_insertLogin__WEBPACK_IMPORTED_MODULE_0__);\n\r\n\n\n//# sourceURL=webpack:///./src/entry/login.entry.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _javascripts_mainContent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../javascripts/mainContent */ \"./src/javascripts/mainContent.js\");\n/* harmony import */ var _javascripts_mainContent__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_javascripts_mainContent__WEBPACK_IMPORTED_MODULE_0__);\n\n\n//# sourceURL=webpack:///./src/entry/mainContent.entry.js?");
 
 /***/ }),
 
-/***/ "./src/html/insertLogin.js":
-/*!*********************************!*\
-  !*** ./src/html/insertLogin.js ***!
-  \*********************************/
+/***/ "./src/javascripts/mainContent.js":
+/*!****************************************!*\
+  !*** ./src/javascripts/mainContent.js ***!
+  \****************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-eval("const mainContainer = document.getElementById(\"main-container\");\r\nmainContainer.innerHTML = `\r\n    <h1>로그인</h1>\r\n    <form action='http://localhost:3000/sessions/create' method='post'><div class='container'><label for='user'><b>아이디</b></label><input type='text' placeholder='Enter Username' name='user' required><label for='password'><b>비밀번호</b></label><input type='password' placeholder='Enter Password' name='password' required><button id='login-button'>로그인</button></div></form>`\n\n//# sourceURL=webpack:///./src/html/insertLogin.js?");
+eval("const mainContainer = document.getElementById(\"main-container\")\r\n\r\n//Login Controller\r\nconst Login = __webpack_require__(/*! ../controllers/LoginController */ \"./src/controllers/LoginController.js\")\r\nconst loginController = new Login(mainContainer)\r\nloginController.init()\r\n\n\n//# sourceURL=webpack:///./src/javascripts/mainContent.js?");
 
 /***/ })
 
