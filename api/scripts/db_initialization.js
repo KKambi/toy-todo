@@ -40,7 +40,8 @@ connection.query(`
 CREATE TABLE IF NOT EXISTS membership_todo.user (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     user VARCHAR(20) NOT NULL,
-    password VARCHAR(20) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    salt VARCHAR(255) NOT NULL,
     name VARCHAR(20) NOT NULL,
     is_admin TINYINT(1) NOT NULL DEFAULT 0,
     PRIMARY KEY (id),
@@ -170,11 +171,13 @@ connection.query(`
     INSERT INTO membership_todo.user
     (user,
     password,
+    salt,
     name,
     is_admin)
     VALUES
     ('admin',
-    '123123',
+    'GuCavBEgRo7QJxOH4KXsPE/O7CfCN6QB9kUcy00DStzRYVJgBKG0VAaVx3MEw1+Q5SQ1GASMjDGCbHNOZf547g==',
+    'z490wC8KvuixXQZ8gx3LAkfGxPSt7PjYmdtjyKOWXYpHE33Hc3luWixkxwsnxDL132djCzOhR4pFE6jNkdB6eA==',
     '김한비',
     1);
 `)
@@ -183,11 +186,13 @@ connection.query(`
     INSERT INTO membership_todo.user
     (user,
     password,
+    salt,
     name,
     is_admin)
     VALUES
     ('user',
-    '123123',
+    '6Wf4YWo3LJWYBNQHiiDld2nbEBSJAksrTVhJ9Csuj7qz3dx/fdFwnmqTpw8/IFpA9k2JzBx1tKyx5Yj0ZlC0+Q==',
+    'LUIrdsJocpT4ZFgkoyrNFWqoQSip3unogef/vZbnJX8bOhZ2qmVmWBoYRHmTKP8yXVgy1KpuzwP6x5NNieJKFw==',
     '이재인',
     0);
 `)

@@ -37,3 +37,7 @@ const util_encrpytion = {
 }
 
 module.exports = util_encrpytion
+
+//for dummy data
+// console.log(util_encrpytion.encrypt('123123'))
+// console.log(util_encrpytion.encrypt('123123'))
