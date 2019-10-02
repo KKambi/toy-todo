@@ -1,6 +1,6 @@
 //출처: https://poiemaweb.com/js-spa
-class IndexController{
-    constructor(headerContainer, mainContainer){
+class IndexController {
+    constructor(headerContainer, mainContainer) {
         this.headerContainer = headerContainer;
         this.mainContainer = mainContainer;
         this.api = "http://localhost:3000"
@@ -17,19 +17,25 @@ class IndexController{
                 const resJson = await this.get(`${this.api}/data/login.json`);
                 this.render(resJson);
             },
-            otherwise(path){
+            otherwise(path) {
                 this.mainContainer.innerHTML = `${path} Not Found`;
             }
         }
     }
 
-    init(){
-        this.headerContainer.addEventListener("click", (event) => {
-            console.log(event.target.nodeName)
-            if (event.target || event.target.nodeName !== 'A') return;
-            event.preventDefault();
+    init() {
+        //history pop을 위한 이벤트 핸들러 설정
+        window.addEventListener('popstate', event => {
+            // 이전페이지 / 다음페이지 button이 클릭되면 router를 호출
+            this.router(event.state.path);
+        })
 
+        //라우팅 이벤트 핸들러 설정
+        this.headerContainer.addEventListener("click", event => {
+            if (!event.target || event.target.nodeName !== 'A') return;
+            event.preventDefault();
             const path = event.target.getAttribute("href")
+            history.pushState({ path }, null, path);    //history push
             this.router(path);
         })
 
@@ -37,21 +43,21 @@ class IndexController{
         this.router('/');
     }
 
-    async get(url){
+    async get(url) {
         const response = await fetch(url, { method: "GET", Accept: "application/json" });
         const data = await response.json();
         return data;
     }
 
-    render(data){
+    render(data) {
         this.mainContainer.innerHTML = `<h1>${data.title}</h1><p>${data.content}</p>`;
     }
 
-    renderHtml(html){
+    renderHtml(html) {
         this.mainContainer.innerHTML = html;
     }
 
-    router(path){
+    router(path) {
         (this.routes[path] || this.routes.otherwise)(path);
     }
 }
