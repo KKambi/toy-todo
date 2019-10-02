@@ -15,14 +15,19 @@ class LoginController{
     }
 
     async login(url){
-        const response = await fetch(url, { 
+        const response = await fetch(url, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }, 
             method: "POST",
-            body: {
-                user: "admin",
-                password: "123123"
-            }
+            body: JSON.stringify({
+                "user": "admin",
+                "password": "123123"
+            })
         });
         const data = await response.json();
+        console.log(data)
         return data;
 
     }
