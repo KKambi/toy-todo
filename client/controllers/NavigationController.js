@@ -1,5 +1,5 @@
 //출처: https://poiemaweb.com/js-spa
-class IndexController {
+class NavigationController {
     constructor(headerContainer, mainContainer) {
         this.headerContainer = headerContainer;
         this.mainContainer = mainContainer;
@@ -67,4 +67,4 @@ class IndexController {
     }
 }
 
-module.exports = IndexController;
+module.exports = NavigationController;

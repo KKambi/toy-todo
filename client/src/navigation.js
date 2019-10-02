@@ -12,8 +12,8 @@ header_container.innerHTML =
         </a>
     </nav>`
 
-const IndexController = require('../controllers/IndexController')
+const navigationController = require('../controllers/NavigationController')
 const headerContainer = document.getElementById("header-container")
 const mainContainer = document.getElementById("main-container")
-const controller = new IndexController(headerContainer, mainContainer)
+const controller = new navigationController(headerContainer, mainContainer)
 controller.init()
