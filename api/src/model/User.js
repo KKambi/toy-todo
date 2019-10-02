@@ -1,7 +1,7 @@
 const { pool } = require('../javascripts/dbPool.js')
 
 const User = {
-    PARAMS_NUMBER: 9,
+    PARAMS_NUMBER: 4,
 
     async create(params){
         let connection;
@@ -12,20 +12,11 @@ const User = {
                 console.log(err)
                 return false;
             }
-            const insertQuery = `INSERT INTO user (user_id, password, name, birth, gender, email, phone, interest, admin) VALUES (
-                '${params.user_id}',
-                '${params.password}',
-                '${params.name}',
-                '${params.birth}',
-                '${params.gender}',
-                '${params.email}',
-                '${params.phone}',
-                '${params.interest}',
-                '${params.admin}'
-            );`
+            const insertQuery = 'INSERT INTO user (user, password, name, is_admin) VALUES (?, ?, ?, ?);'
+            const insertValue = [`${params.user}`, `${params.password}`, `${params.name}`, `${params.is_admin}`]
             connection = await pool.getConnection(async conn => conn);
             try {
-                await connection.query(insertQuery);
+                await connection.execute(insertQuery, insertValue);
                 connection.release();
                 return true;
             } catch(err){
@@ -40,12 +31,13 @@ const User = {
         }
     },
 
-    async find(userId){
+    async find(user){
         try {
-            const findQuery = `SELECT * FROM user WHERE user_id='${userId}';`
+            const findQuery = 'SELECT id, user, password, is_admin FROM user WHERE user = ?;'
+            const findValue = [`${user}`]
             const connection = await pool.getConnection(async conn => conn);
             try {
-                const [rows] = await connection.query(findQuery);
+                const [rows] = await connection.execute(findQuery, findValue);
                 connection.release();
                 if (rows.length) return rows[0];
                 return false;
@@ -62,7 +54,7 @@ const User = {
 
     async findAll(){
         try {
-            const findAllQuery = `SELECT * FROM user;`
+            const findAllQuery = 'SELECT id, user, password, is_admin FROM user;'
             const connection = await pool.getConnection(async conn => conn);
             try {
                 const [rows] = await connection.query(findAllQuery);
@@ -79,12 +71,13 @@ const User = {
         }
     },
 
-    async update(userId, attribute, value){
+    async update(user, attribute, value){
         try {
-            const updateQuery = `UPDATE user SET ${attribute} = '${value}' WHERE user_id='${userId}'`
+            const updateQuery = `UPDATE user SET ${attribute} = ? WHERE user = ?;`
+            const updateValue = [`${value}`, `${user}`]
             const connection = await pool.getConnection(async conn => conn);
             try {
-                await connection.query(updateQuery);
+                await connection.execute(updateQuery, updateValue);
                 connection.release();
                 return true;
             } catch(err){
@@ -98,12 +91,13 @@ const User = {
         } 
     },
 
-    async delete(userId){
+    async delete(user){
         try {
-            const deleteQuery = `DELETE user WHERE user_id='${userId}'`
+            const deleteQuery = `DELETE user WHERE user = ?;`
+            const deleteValue = [`${user}`]
             const connection = await pool.getConnection(async conn => conn);
             try {
-                await connection.query(deleteQuery);
+                await connection.execute(deleteQuery, deleteValue);
                 connection.release();
                 return true;
             } catch(err){
@@ -122,16 +116,11 @@ module.exports = {
     User
 };
 
-
 // (async() => { console.log(await User.create({
-//     user: "testuser12",
-//     password: "hi",
-//     name: "te",
-//     birth: "94/03/22",
-//     gender: "m",
-//     email: "bok123@mg.com",
-//     phone: "010-2342-2343",
-//     interest: "ewr/werw/qwe",
-//     admin: "1"
+//     user: "adminw2",
+//     password: "123123",
+//     name: "김지현",
+//     is_admin: "1"
 // }))})();
-(async() => {console.log(await User.findAll())})();
+// (async() => {console.log(await User.findAll())})();
+// (async() => {console.log(await User.find('admin'))})();
