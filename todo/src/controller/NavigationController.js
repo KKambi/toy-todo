@@ -3,7 +3,7 @@ class NavigationController {
     constructor(headerContainer, mainContainer) {
         this.headerContainer = headerContainer;
         this.mainContainer = mainContainer;
-        this.endpoint = "http://localhost:3001"  //client
+        this.endpoint = "http://localhost:3000"  //client endpoint
         this.routes = {
             '/': async () => {
                 const resJson = await this.get(`${this.endpoint}/`);

@@ -13,14 +13,6 @@ const SessionController = new Session(
     )
 );
 
-// (async() => {
-//     try{
-//         console.log(await SessionController.findUser('admin'))
-//     } catch (e){
-//         console.log(e)
-//     }
-// })();
-
 module.exports = () => {
     try {
         passport.use(new LocalStrategy({
@@ -60,7 +52,6 @@ module.exports = () => {
         //인증이 필요할 때마다 사용자 정보를 저장된 세션에서 읽어옴.
         passport.deserializeUser((userInfo, done) => {
             console.log("세션에서 불러오기:", userInfo)
-            //불러오는 역할만 하고 비교함수를 구현해야함
             done(null, userInfo);
         })
 

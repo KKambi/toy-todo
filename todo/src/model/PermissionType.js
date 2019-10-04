@@ -1,6 +1,6 @@
-const ModelWithoutId = require('./ModelWithoutId')
+const IModelWithoutId = require('./interface/IModelWithoutId')
 
-class PermissionType extends ModelWithoutId {
+class PermissionType extends IModelWithoutId {
 
 }
 

@@ -1,6 +1,6 @@
-const ModelWithId = require('./ModelWithId')
+const IModelWithId = require('./interface/IModelWithId')
 
-class Section extends ModelWithId {
+class Section extends IModelWithId {
 
 }
 

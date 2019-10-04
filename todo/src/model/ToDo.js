@@ -1,6 +1,6 @@
-const ModelWithId = require('./ModelWithId')
+const IModelWithId = require('./interface/IModelWithId')
 
-class Todo extends ModelWithId {
+class Todo extends IModelWithId {
 
 }
 

@@ -1,15 +1,11 @@
 /*
 Model Schema
-User -> user, 4, user, name, password, is_admin
-ToDo -> toDo, 2, user_id, is_open
-Section -> section, 3, toDo_id, name, sort
-Card -> card, 6, section_id, writer, content, sort, fileURL, imageURL
-Permission -> permission, 2, user_id, grant_id
+PermissionType -> permissionType, 2, read_permission, write_permission 
 */
 
-const { pool } = require('../javascripts/dbPool.js')
+const { pool } = require('../../javascripts/uitl/util_dbPool')
 
-class ModelWithId {
+class IModelWithoutId {
     constructor(TABLE_NAME, ATTRIBUTE_NUMBERS, ATTRIBUTE_LIST){
         this.TABLE_NAME = TABLE_NAME
         this.ATTRIBUTE_NUMBERS = ATTRIBUTE_NUMBERS
@@ -46,7 +42,7 @@ class ModelWithId {
 
     async find(attribute, identifier){
         try {
-            const findQuery = `SELECT id, ${this.ATTRIBUTE_LIST} FROM ${this.TABLE_NAME} WHERE ${attribute} = ?;`
+            const findQuery = `SELECT ${this.ATTRIBUTE_LIST} FROM ${this.TABLE_NAME} WHERE ${attribute} = ?;`
             const findValue = [`${identifier}`]
             const connection = await pool.getConnection(async conn => conn);
             try {
@@ -68,7 +64,7 @@ class ModelWithId {
     async findAll(){
         try {
             console.log("hi")
-            const findAllQuery = `SELECT id, ${this.ATTRIBUTE_LIST} FROM ${this.TABLE_NAME};`
+            const findAllQuery = `SELECT ${this.ATTRIBUTE_LIST} FROM ${this.TABLE_NAME};`
             const connection = await pool.getConnection(async conn => conn);
             try {
                 const [rows] = await connection.query(findAllQuery);
@@ -126,5 +122,5 @@ class ModelWithId {
     }
 };
 
-module.exports = ModelWithId
+module.exports = IModelWithoutId
 

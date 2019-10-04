@@ -1,4 +1,4 @@
-const Navigation = require('../controllers/NavigationController')
+const Navigation = require('../controller/NavigationController')
 const headerContainer = document.getElementById("header-container")
 const mainContainer = document.getElementById("main-container")
 const navigationController = new Navigation(headerContainer, mainContainer)

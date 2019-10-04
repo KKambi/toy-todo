@@ -3,7 +3,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
     entry: {
-        index: './src/entry/index.entry.js'
+        navigation: './src/entry/navigation.entry.js',
     },
     output: {
         path: path.resolve(__dirname, 'public/javascripts'),  //산출물이 위치할 경로
