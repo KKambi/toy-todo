@@ -4,12 +4,12 @@ const path = require('path');
 const fs = require('fs');
 
 router.get('/find', function (req, res, next) {
-    const signed = req.cookies.session_id ? 'true':'false'
+    const signed = req.cookies[process.env.SESSION_ID_NAME] ? 'true':'false'
     try {
         res.format({
             // 새로고침에 의한 브라우저 요청
             'text/html': function () {
-                res.render('find', { signed });
+                res.render('users/find', { signed });
             },
             // AJAX 요청
             'application/json': function () {

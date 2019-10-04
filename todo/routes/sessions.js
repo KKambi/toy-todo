@@ -5,31 +5,23 @@ const passport = require('passport');
 // 로그인 페이지 요청
 router.get('/new', function (req, res, next) {
     const signed = req.query.signed;
-    res.render('login', { signed });
+    res.render('sessions/new', { signed });
 });
 
 // 로그인 요청
 router.post('/create', passport.authenticate('local', {
-    failWithError: true
-}), (req, res, next) => {
-    //성공시!
-    res.json({
-        "success": '로그인 성공!',
-        "session_id": req.user.session_id,
-        "is_admin": req.user.is_admin
-    })
-}, (err, req, res, next) => {
-    //실패시!
-    res.json({
-        "error": '로그인 실패!'
-    })
-})
+    successRedirect: '/',
+    failureRedirect: 'new?signed=false',
+    successFlash: true,
+    failureFlash: true 
+}))
 
 // 로그아웃 요청
 router.post('/destroy', (req, res, next) => {
-    req.logout();
-    //TODO: client측 브라우저에서 쿠키를 지우는 코드 필요할까?
-    req.session.destroy((err) => res.json({ result: "success" }));
+    req.logout();   // req.user를 삭제
+    req.session.destroy()   // redis에서 세션 정보 삭제
+    res.clearCookie(process.env.SESSION_ID_NAME)    // browser 쿠키 삭제
+    res.redirect('/')
 })
 
 module.exports = router;

@@ -5,8 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "nodemon": "nodemon ./bin/www",
-    "dev": "npm run db_initialize && npm run start",
-    "db_initialize": "node ./scripts/db_initialization",
+    "dev": "node ./scripts/db_initialization && npm run start",
     "bundle": "webpack --watch --mode=development",
     "production": "webpack --mode=production"
   },

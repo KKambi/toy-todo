@@ -7,7 +7,7 @@ Card -> card, 6, section_id, writer, content, sort, fileURL, imageURL
 Permission -> permission, 2, user_id, grant_id
 */
 
-const { pool } = require('../../javascripts/uitl/util_dbPool')
+const util_dbPool = require('../../javascripts/uitl/util_dbPool')
 
 class IModelWithId {
     constructor(TABLE_NAME, ATTRIBUTE_NUMBERS, ATTRIBUTE_LIST){
@@ -27,7 +27,7 @@ class IModelWithId {
             }
             const insertQuery = `INSERT INTO ${this.TABLE_NAME}} (${this.ATTRIBUTE_LIST}) VALUES (?, ?, ?, ?);`
             const insertValue = [`${params.user}`, `${params.password}`, `${params.name}`, `${params.is_admin}`]
-            connection = await pool.getConnection(async conn => conn);
+            connection = await util_dbPool.pool.getConnection(async conn => conn);
             try {
                 await connection.execute(insertQuery, insertValue);
                 connection.release();
@@ -48,7 +48,7 @@ class IModelWithId {
         try {
             const findQuery = `SELECT id, ${this.ATTRIBUTE_LIST} FROM ${this.TABLE_NAME} WHERE ${attribute} = ?;`
             const findValue = [`${identifier}`]
-            const connection = await pool.getConnection(async conn => conn);
+            const connection = await util_dbPool.pool.getConnection(async conn => conn);
             try {
                 const [rows] = await connection.execute(findQuery, findValue);
                 connection.release();
@@ -69,7 +69,7 @@ class IModelWithId {
         try {
             console.log("hi")
             const findAllQuery = `SELECT id, ${this.ATTRIBUTE_LIST} FROM ${this.TABLE_NAME};`
-            const connection = await pool.getConnection(async conn => conn);
+            const connection = await util_dbPool.pool.getConnection(async conn => conn);
             try {
                 const [rows] = await connection.query(findAllQuery);
                 connection.release();
@@ -89,7 +89,7 @@ class IModelWithId {
         try {
             const updateQuery = `UPDATE ${this.TABLE_NAME} SET ${target} = ? WHERE ${attribute} = ?;`
             const updateValue = [`${value}`, `${identifier}`]
-            const connection = await pool.getConnection(async conn => conn);
+            const connection = await util_dbPool.pool.getConnection(async conn => conn);
             try {
                 await connection.execute(updateQuery, updateValue);
                 connection.release();
@@ -109,7 +109,7 @@ class IModelWithId {
         try {
             const deleteQuery = `DELETE ${this.TABLE_NAME} WHERE ${attribute} = ?;`
             const deleteValue = [`${identifier}`]
-            const connection = await pool.getConnection(async conn => conn);
+            const connection = await util_dbPool.pool.getConnection(async conn => conn);
             try {
                 await connection.execute(deleteQuery, deleteValue);
                 connection.release();

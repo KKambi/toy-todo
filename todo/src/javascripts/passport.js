@@ -25,7 +25,7 @@ module.exports = () => {
             const userRecord = await SessionController.findUser(user);
 
             if (!userRecord) {
-                return done(null, false, { message: "존재하지 않는 아이디입니다." });
+                return done(null, false, { message: "아이디 혹은 비밀번호가 틀렸습니다." });
             }
 
             const storedPassword = userRecord.password;
@@ -34,7 +34,6 @@ module.exports = () => {
             }
             
             const userInfo = {
-                "session_id": req.sessionID,
                 "user": userRecord.user,
                 "name": userRecord.name,
                 "is_admin": userRecord.is_admin

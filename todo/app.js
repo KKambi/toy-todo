@@ -19,7 +19,8 @@ const session = require('express-session');
 const redisStore = require('connect-redis')(session);
 
 // 유틸 라이브러리
-const util_uuid = require('./src/javascripts/util_uuid')
+const util_uuid = require('./src/javascripts/uitl/util_uuid')
+const util_cookie = require('./src/javascripts/uitl/util_cookie')
 
 // 라우터 설정
 const indexRouter = require('./routes/index');
@@ -44,7 +45,7 @@ const redisClient = redis.createClient({
 
 // session 설정
 app.use(session({
-    name: process.env.SESSION_NAME,
+    name: process.env.SESSION_ID_NAME,
     secret: process.env.SESSION_SECRET,
     genid: function (req) {
         return util_uuid.createUniqueId();  //uuid 라이브러리릍 통해 세션id 반환
