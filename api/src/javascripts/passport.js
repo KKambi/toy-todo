@@ -40,8 +40,9 @@ module.exports = () => {
             if (!SessionController.comparePassword(password, userRecord.salt, storedPassword)) {
                 return done(null, false, { message: "아이디 혹은 비밀번호가 틀렸습니다." })
             }
-
+            
             const userInfo = {
+                "session_id": req.sessionID,
                 "user": userRecord.user,
                 "name": userRecord.name,
                 "is_admin": userRecord.is_admin
@@ -52,13 +53,11 @@ module.exports = () => {
 
         //로그인 성공 시 사용자 정보를 세션에 저장
         passport.serializeUser((userInfo, done) => {
-            // console.log("세션에 저장!", userInfo)
             done(null, userInfo);
         })
 
         //인증 후, 페이지 접근시 마다 사용자 정보를 저장된 세션에서 읽어옴.
         passport.deserializeUser((userInfo, done) => {
-            // console.log("저장된 세션값 읽음!", userInfo)
             done(null, userInfo);
         })
 

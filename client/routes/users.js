@@ -8,8 +8,7 @@ router.get('/find', function (req, res, next) {
         res.format({
             // 새로고침에 의한 브라우저 요청
             'text/html': function () {
-                const htmlPath = path.join(__dirname + '/../public/html/find.html')
-                res.sendFile(htmlPath);
+                res.render('find');
             },
             // AJAX 요청
             'application/json': function () {

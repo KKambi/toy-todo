@@ -1,1 +1,1 @@
-import '../html/insertFind'
+import '../insertHTML/insertFind'

@@ -94,18 +94,18 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _html_insertIndex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../html/insertIndex */ \"./src/html/insertIndex.js\");\n/* harmony import */ var _html_insertIndex__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_html_insertIndex__WEBPACK_IMPORTED_MODULE_0__);\n\n\n//# sourceURL=webpack:///./src/entry/index.entry.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _insertHTML_insertIndex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../insertHTML/insertIndex */ \"./src/insertHTML/insertIndex.js\");\n/* harmony import */ var _insertHTML_insertIndex__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_insertHTML_insertIndex__WEBPACK_IMPORTED_MODULE_0__);\n\n\n//# sourceURL=webpack:///./src/entry/index.entry.js?");
 
 /***/ }),
 
-/***/ "./src/html/insertIndex.js":
-/*!*********************************!*\
-  !*** ./src/html/insertIndex.js ***!
-  \*********************************/
+/***/ "./src/insertHTML/insertIndex.js":
+/*!***************************************!*\
+  !*** ./src/insertHTML/insertIndex.js ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("const mainContainer = document.getElementById(\"main-container\");\r\nmainContainer.innerHTML = \r\n    `<h1>홈</h1>\r\n    <p>Index Page</p>`\n\n//# sourceURL=webpack:///./src/html/insertIndex.js?");
+eval("const mainContainer = document.getElementById(\"main-container\");\r\nmainContainer.innerHTML = \r\n    `<h1>홈</h1>\r\n    <p>Index Page</p>`\n\n//# sourceURL=webpack:///./src/insertHTML/insertIndex.js?");
 
 /***/ })
 

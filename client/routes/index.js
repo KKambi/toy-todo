@@ -4,12 +4,12 @@ const path = require('path');
 const fs = require('fs');
 
 router.get('/', function (req, res, next){
+    const signed = req.cookies.session_id ? 'true':'false'
     try{
         res.format({
             // 새로고침에 의한 브라우저 요청
             'text/html': function () {
-                const htmlPath = path.join(__dirname + '/../public/html/index.html')
-                res.sendFile(htmlPath);
+                res.render('index', { signed });
             },
             // AJAX 요청
             'application/json': function () {

@@ -1,1 +1,1 @@
-import '../html/insertIndex'
+import '../insertHTML/insertIndex'

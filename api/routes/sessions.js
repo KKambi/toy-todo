@@ -35,15 +35,23 @@ const SessionController = new Session(
 // )
 
 router.post('/create', passport.authenticate('local', {
-    successFlash: true,
-    failureFlash: true,
     failWithError: true
 }), (req, res, next) => {
     //성공시!
-    console.log(req.flash())
+    res.json({
+        success: '로그인 성공!',
+        session_id: req.user.session_id
+    })
 }, (err, req, res, next) => {
     //실패시!
-    console.log(req.flash())
+    res.json({
+        error: '로그인 실패!'
+    })
+})
+
+router.post('/destroy', (req, res, next) => {
+    req.logout();
+    res.json({ result: "success" })
 })
 
 module.exports = router;

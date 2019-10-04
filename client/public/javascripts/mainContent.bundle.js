@@ -86,17 +86,6 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/controllers/LoginController.js":
-/*!********************************************!*\
-  !*** ./src/controllers/LoginController.js ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("\r\nclass LoginController{\r\n    constructor(mainContainer){\r\n        this.mainContainer = mainContainer\r\n        this.url = \"http://localhost:3000/sessions/create\" //api login url\r\n    }\r\n\r\n    init(){\r\n        //form button에 대한 이벤트 핸들러 설정\r\n        this.mainContainer.addEventListener(\"click\", async (event) => {\r\n            if (!event.target || event.target.id !== \"login-button\") return;\r\n            event.preventDefault();   \r\n            this.login(this.url) //FIXME: 성공, 실패 리턴값 받아서 처리해야함\r\n        })\r\n    }\r\n\r\n    async login(url){\r\n        const formData = new FormData(document.getElementById(\"login-form\"))\r\n        await fetch(url, {\r\n            headers: {\r\n                'Accept': 'application/json',\r\n                'Content-Type': 'application/json'\r\n            }, \r\n            method: \"POST\",\r\n            body: JSON.stringify({\r\n                \"user\": formData.get(\"user\"),\r\n                \"password\": formData.get(\"password\")\r\n            })\r\n        });\r\n    }\r\n}\r\n\r\nmodule.exports = LoginController\n\n//# sourceURL=webpack:///./src/controllers/LoginController.js?");
-
-/***/ }),
-
 /***/ "./src/entry/mainContent.entry.js":
 /*!****************************************!*\
   !*** ./src/entry/mainContent.entry.js ***!
@@ -114,9 +103,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _jav
   !*** ./src/javascripts/mainContent.js ***!
   \****************************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-eval("const mainContainer = document.getElementById(\"main-container\")\r\n\r\n//Login Controller\r\nconst Login = __webpack_require__(/*! ../controllers/LoginController */ \"./src/controllers/LoginController.js\")\r\nconst loginController = new Login(mainContainer)\r\nloginController.init()\r\n\n\n//# sourceURL=webpack:///./src/javascripts/mainContent.js?");
+eval("\n\n//# sourceURL=webpack:///./src/javascripts/mainContent.js?");
 
 /***/ })
 

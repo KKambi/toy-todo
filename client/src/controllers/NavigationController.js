@@ -33,6 +33,7 @@ class NavigationController {
         //a 태그에 대한 라우팅 이벤트 핸들러 설정
         this.headerContainer.addEventListener("click", event => {
             if (!event.target || event.target.nodeName !== 'A') return;
+            if (event.target.id === 'navigation-button-login') return;
             event.preventDefault();
             const path = event.target.getAttribute("href")
             history.pushState({ path }, null, path);    //history push

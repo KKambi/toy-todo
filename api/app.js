@@ -11,7 +11,6 @@ const redis = require('redis');
 const session = require('express-session');
 const redisStore = require('connect-redis')(session);
 const util_uuid = require('./src/javascripts/util_uuid')
-const util_cookie =require('./src/javascripts/util_cookie')
 
 // 환경변수 설정
 require('dotenv').config()
@@ -46,8 +45,8 @@ app.use(session({
         logErrors: true
     }),
     saveUninitialized: false,
-    resave: false,
-    cookie: util_cookie.COOKIE_OPTIONS
+    resave: false
+    // cookie: util_cookie.COOKIE_OPTIONS
 }))
 
 // passport setup

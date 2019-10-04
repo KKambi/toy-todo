@@ -1,7 +1,8 @@
+const MIN_30 = 1800000
+
 const util_cookie = {
-    MIN_30: 1800000,
     COOKIE_OPTIONS: {
-        maxAge: this.MIN_30,
+        maxAge: MIN_30,
         httpOnly: true
     }
 }

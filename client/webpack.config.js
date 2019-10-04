@@ -6,8 +6,7 @@ module.exports = {
         navigation: './src/entry/navigation.entry.js',
         mainContent: './src/entry/mainContent.entry.js',
         index: './src/entry/index.entry.js',
-        find: './src/entry/find.entry.js',
-        login: './src/entry/login.entry.js'
+        find: './src/entry/find.entry.js'
     },
     output: {
         path: path.resolve(__dirname, 'public/javascripts'),  //산출물이 위치할 경로

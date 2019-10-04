@@ -14,9 +14,8 @@ const app = express();
 require('dotenv').config();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'public/html'));
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'html');
+app.set('views', path.join(__dirname, 'src/views'));
+app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());
