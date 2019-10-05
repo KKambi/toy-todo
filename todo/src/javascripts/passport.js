@@ -14,45 +14,44 @@ const SessionController = new Session(
 );
 
 module.exports = () => {
-    try {
-        passport.use(new LocalStrategy({
-            usernameField: 'user',
-            passwordField: 'password',
-            session: true,
-            passReqToCallback: true
-        }, async (req, user, password, done) => {
-            //MySQL DB에서 유저의 정보를 대조하는 코드
-            const userRecord = await SessionController.findUser(user);
+    passport.use(new LocalStrategy({
+        usernameField: 'user',
+        passwordField: 'password',
+        session: true,
+        passReqToCallback: true
+    }, async (req, userId, password, done) => {
+        //MySQL DB에서 유저의 정보를 대조하는 코드
+        const userRecord = await SessionController.findUser(userId);
 
-            if (!userRecord) {
-                return done(null, false, { message: "아이디 혹은 비밀번호가 틀렸습니다." });
-            }
+        if (!userRecord) {
+            return done(null, false, { message: "아이디 혹은 비밀번호가 틀렸습니다." });
+        }
 
-            const storedPassword = userRecord.password;
-            if (!SessionController.comparePassword(password, userRecord.salt, storedPassword)) {
-                return done(null, false, { message: "아이디 혹은 비밀번호가 틀렸습니다." })
-            }
-            
-            const userInfo = {
-                "user": userRecord.user,
-                "name": userRecord.name,
-                "is_admin": userRecord.is_admin
-            }
-            //로그인 성공 시, 사용자 정보를 serializeUser 함수에 넘겨줌
-            return done(null, userInfo, { message: "로그인 성공!" });
-        }))
+        const storedPassword = userRecord.password;
+        if (!SessionController.comparePassword(password, userRecord.salt, storedPassword)) {
+            return done(null, false, { message: "아이디 혹은 비밀번호가 틀렸습니다." })
+        }
 
-        //로그인 성공 시 사용자 정보를 세션에 저장
-        passport.serializeUser((userInfo, done) => {
-            console.log("세션에 저장:", userInfo)
-            done(null, userInfo);
-        })
+        const user = {
+            "user": userRecord.user,
+            "name": userRecord.name,
+            "is_admin": userRecord.is_admin
+        }
+        //로그인 성공 시, 사용자 정보를 serializeUser 함수에 넘겨줌
+        return done(null, user, { message: "로그인 성공!" });
+    }))
 
-        //인증이 필요할 때마다 사용자 정보를 저장된 세션에서 읽어옴.
-        passport.deserializeUser((userInfo, done) => {
-            console.log("세션에서 불러오기:", userInfo)
-            done(null, userInfo);
-        })
+    //로그인 성공 시 로컬전략콜백에서 리턴받은 2번째 인자를 req.session.passport.user에 저장
+    //redis에 저장하는 코드가 아님!!
+    passport.serializeUser((user, done) => {
+        console.log("세션에 저장:", user)
+        done(null, user);
+    })
 
-    } catch (e) { console.log("로컬전략에러: ", e) }
+    //서버에 아무 요청이 들어올 때 req.session.passport.user를 인자로 불러옴.
+    //redis에서 불러오는 코드가 아님!!
+    passport.deserializeUser((user, done) => {
+        console.log("세션에서 불러오기:", user)
+        done(null, user);
+    })
 }

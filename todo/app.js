@@ -17,6 +17,11 @@ const flash = require('connect-flash');
 const redis = require('redis');
 const session = require('express-session');
 const redisStore = require('connect-redis')(session);
+const redisClient = redis.createClient({
+    host: process.env.REDIS_HOST,
+    port: 6379,
+    prefix: 'todo_'
+})
 
 // 유틸 라이브러리
 const util_uuid = require('./src/javascripts/uitl/util_uuid')
@@ -34,15 +39,6 @@ const app = express();
 // 환경변수 설정
 require('dotenv').config();
 
-// flash 허용
-app.use(flash());
-
-// redis 설정
-const redisClient = redis.createClient({
-    host: process.env.REDIS_HOST,
-    port: 6379
-})
-
 // session 설정
 app.use(session({
     name: process.env.SESSION_ID_NAME,
@@ -51,18 +47,20 @@ app.use(session({
         return util_uuid.createUniqueId();  //uuid 라이브러리릍 통해 세션id 반환
     },
     store: new redisStore({
-        client: redisClient,
-        logErrors: true
+        client: redisClient
     }),
-    saveUninitialized: false,
+    saveUninitialized: false,   //true를 주면 세션정보가 계속 생성됨. false가 경쟁상태를 방지한다.
     resave: false,
-    cookie: util_cookie.COOKIE_OPTIONS
+    cookie: util_cookie.COOKIE_OPTIONS,
 }))
 
 // 패스포트 설정
 app.use(passport.initialize()); // passport 구동
 app.use(passport.session()); // 세션 연결
 passportConfig();
+
+// flash 허용
+app.use(flash());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'src/view'));

@@ -4,6 +4,7 @@ const path = require('path');
 const fs = require('fs');
 
 router.get('/', function (req, res, next){
+    console.log("홈화면 세션:", req.session)
     const signed = req.cookies[process.env.SESSION_ID_NAME] ? 'true':'false'
     try{
         res.format({
