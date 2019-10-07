@@ -1,24 +1,31 @@
 extends layout
 
 block content
-    header#header-container
-        nav#navigation-container
-        a#navigation-button-index(href='/')
-            | HOME
-        a#navigation-button-find(href='/users/find')
-            | 훔쳐보기
-        if signed === 'true'
-            a(onclick="document.querySelector('#logout-form').submit();")
-                | 로그아웃
-            form#logout-form(action="/sessions/destroy" method="POST" style="display:none;")  
-        else
-            a#navigation-button-login(href='/sessions/new')
-                | 로그인
-        
     main#main-container
-        h1
-            | 홈
-        p
-            | Index Page
+        div.column-container(data-column-name='해야할일')
+            div.column-header-container
+                div.column
+                span.column-card-number
+                    | 3
+                span.column-title
+                    | 해야할일
+                span.column-add-button
+                    | +
+                span.column-modify-button
+                    | :
+            div.card-container
+                div.card-header-container
+                    div.card-icon
+                        | 앜
+                    div.card-title
+                        | 페이지네이션 UI 리서치
+                div.card-section-container
+                    | 이미지 혹은 파일 혹은 내용
+                div.card-footer-container
+                    div.card-writer
+                        | Added By KKambi
+
+
     footer
+    script(src='/javascripts/index.bundle.js')
     script(src='/javascripts/navigation.bundle.js')
