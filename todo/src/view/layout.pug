@@ -12,16 +12,16 @@ head
     header#header-container
         nav#navigation-container
             div#navigation-button-index
-                | ToDo서비스
+                | TODO
             a#navigation-button-find(href='?')
-                | Log
+                | LOG
             a#navigation-button-find(href='/users/find')
-                | Find
+                | FIND
             if signed === 'true'
                 a(onclick="document.querySelector('#logout-form').submit();")
-                    | Logout
+                    | LOGOUT
                 form#logout-form(action="/sessions/destroy" method="POST" style="display:none;")  
             else
                 a#navigation-button-login(href='/sessions/new')
-                    | Login
+                    | LOGIN
     block content
