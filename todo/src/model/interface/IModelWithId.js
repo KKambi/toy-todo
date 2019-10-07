@@ -7,7 +7,7 @@ Card -> card, 6, section_id, writer, content, sort, fileURL, imageURL
 Permission -> permission, 2, user_id, grant_id
 */
 
-const util_dbPool = require('../../javascripts/uitl/util_dbPool')
+const util_dbPool = require('../../javascripts/util/util_dbPool')
 
 class IModelWithId {
     constructor(TABLE_NAME, ATTRIBUTE_NUMBERS, ATTRIBUTE_LIST){

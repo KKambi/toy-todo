@@ -3,7 +3,7 @@ Model Schema
 PermissionType -> permissionType, 2, read_permission, write_permission 
 */
 
-const util_dbPool = require('../../javascripts/uitl/util_dbPool')
+const util_dbPool = require('../../javascripts/util/util_dbPool')
 
 class IModelWithoutId {
     constructor(TABLE_NAME, ATTRIBUTE_NUMBERS, ATTRIBUTE_LIST){

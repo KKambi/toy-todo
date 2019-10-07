@@ -86,25 +86,25 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./public/stylesheets/mainContainer.sass":
-/*!****************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./public/stylesheets/mainContainer.sass ***!
-  \****************************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/stylesheets/mainContainer.sass":
+/*!*************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/stylesheets/mainContainer.sass ***!
+  \*************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\")(false);\n// Module\nexports.push([module.i, \"#main-container {\\n  padding: 2rem;\\n  height: 100%;\\n  display: flex; }\\n\\n.column-container {\\n  margin-right: 1.5rem;\\n  max-width: 35rem;\\n  min-width: 35rem;\\n  font-size: 1.4rem;\\n  height: 100%;\\n  border: 0.1rem solid #e1e4e8;\\n  border-radius: 0.6rem;\\n  background-color: #EEF1F3; }\\n  .column-container .column-header-container {\\n    display: flex;\\n    justify-content: space-between;\\n    padding: 1.6rem 1rem 1rem; }\\n  .column-container .card-container {\\n    padding: 1.5rem;\\n    margin: 0 0.8rem 0.8rem 0.8rem;\\n    background-color: #FFFFFF; }\\n\\n.column-header-title {\\n  display: flex;\\n  line-height: normal;\\n  font-weight: 600; }\\n  .column-header-title .column-card-number {\\n    width: 2rem;\\n    height: 2rem;\\n    border-radius: 50%;\\n    background-color: #CFD2D4;\\n    margin-right: 1rem;\\n    text-align: center; }\\n\\n.column-header-menu {\\n  display: flex; }\\n  .column-header-menu button {\\n    border: 0;\\n    background-color: transparent;\\n    color: #586069;\\n    padding: 0 0.4rem 0 0.4rem; }\\n  .column-header-menu button:hover {\\n    color: #DB5A77; }\\n\\n.card-container {\\n  border: 0.1rem solid #e1e4e8;\\n  border-radius: 0.6rem;\\n  box-shadow: 0 0.3rem 0.3rem #e1e4e8; }\\n  .card-container .card-header-container {\\n    display: flex; }\\n    .card-container .card-header-container .icon {\\n      margin-right: 0.5rem; }\\n  .card-container .card-section-container {\\n    margin: 2rem 0 2rem 0; }\\n  .card-container .card-footer-container {\\n    font-size: 90%; }\\n\", \"\"]);\n\n\n//# sourceURL=webpack:///./public/stylesheets/mainContainer.sass?./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js");
+eval("exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\")(false);\n// Module\nexports.push([module.i, \"#main-container {\\n  padding: 2rem;\\n  height: 100%;\\n  display: flex; }\\n\\n.column-container {\\n  margin-right: 1.5rem;\\n  max-width: 35rem;\\n  min-width: 35rem;\\n  font-size: 1.4rem;\\n  height: 100%;\\n  border: 0.1rem solid #e1e4e8;\\n  border-radius: 0.6rem;\\n  background-color: #EEF1F3;\\n  overflow-y: auto; }\\n  .column-container .column-header-container {\\n    display: flex;\\n    justify-content: space-between;\\n    padding: 1.6rem 1rem 1rem; }\\n  .column-container .card-container {\\n    padding: 1.5rem;\\n    margin: 0 0.8rem 0.8rem 0.8rem;\\n    background-color: #FFFFFF; }\\n\\n.column-header-title {\\n  display: flex;\\n  line-height: normal;\\n  font-weight: 600; }\\n  .column-header-title .column-card-number {\\n    width: 2rem;\\n    height: 2rem;\\n    border-radius: 50%;\\n    background-color: #CFD2D4;\\n    margin-right: 1rem;\\n    text-align: center; }\\n\\n.column-header-menu {\\n  display: flex; }\\n  .column-header-menu button {\\n    border: 0;\\n    background-color: transparent;\\n    color: #586069;\\n    padding: 0 0.4rem 0 0.4rem; }\\n  .column-header-menu button:hover {\\n    color: #DB5A77; }\\n\\n.card-container {\\n  border: 0.1rem solid #e1e4e8;\\n  border-radius: 0.6rem;\\n  box-shadow: 0 0.3rem 0.3rem #e1e4e8; }\\n  .card-container .card-header-container {\\n    display: flex; }\\n    .card-container .card-header-container .icon {\\n      margin-right: 0.5rem; }\\n  .card-container .card-section-container {\\n    margin: 2rem 0 2rem 0; }\\n  .card-container .card-footer-container {\\n    font-size: 90%; }\\n\\n.card-add-container {\\n  margin: 0.8rem; }\\n  .card-add-container .card-content {\\n    height: 7rem;\\n    padding: 1rem;\\n    font-family: inherit;\\n    font-size: inherit;\\n    width: 100%;\\n    resize: vertical;\\n    border: 0.1rem solid #CDD0D2;\\n    border-radius: 0.6rem;\\n    box-shadow: inset 0 0.3rem 0.3rem #e1e4e8; }\\n  .card-add-container .card-buttons {\\n    display: flex;\\n    height: 3.5rem;\\n    margin-top: 0.8rem;\\n    font-weight: 600; }\\n    .card-add-container .card-buttons .card-add-button {\\n      margin-right: 0.4rem;\\n      background: #DB5A77;\\n      color: #FFFFFF; }\\n    .card-add-container .card-buttons .card-cancel-button {\\n      background: #FAFBFC;\\n      margin-left: 0.4rem; }\\n    .card-add-container .card-buttons .card-add-button {\\n      background: linear-gradient(-180deg, #DB7189, #DF4265); }\\n    .card-add-container .card-buttons .card-cancel-button:hover {\\n      background: linear-gradient(-180deg, #f0f3f6, #e6ebf1 90%); }\\n    .card-add-container .card-buttons button {\\n      opacity: 0.9;\\n      flex-grow: 1;\\n      flex-basis: 0;\\n      text-align: center;\\n      display: flex;\\n      flex-direction: column;\\n      justify-content: center;\\n      border: 0.1rem solid #c5cad0;\\n      border-radius: 0.6rem; }\\n    .card-add-container .card-buttons button:hover {\\n      opacity: 1;\\n      border: 0.1rem solid #b8b3b3; }\\n\", \"\"]);\n\n\n//# sourceURL=webpack:///./src/stylesheets/mainContainer.sass?./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js");
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./public/stylesheets/reset.sass":
-/*!********************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./public/stylesheets/reset.sass ***!
-  \********************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/stylesheets/reset.sass":
+/*!*****************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/stylesheets/reset.sass ***!
+  \*****************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\")(false);\n// Imports\nexports.push([module.i, \"@import url(https://fonts.googleapis.com/css?family=Noto+Sans:400,700&display=block);\", \"\"]);\n// Module\nexports.push([module.i, \"html, body, div, span, applet, object, iframe,\\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\\na, abbr, acronym, address, big, cite, code,\\ndel, dfn, em, img, ins, kbd, q, s, samp,\\nsmall, strike, strong, sub, sup, tt, var,\\nb, u, i, center,\\ndl, dt, dd, ol, ul, li,\\nfieldset, form, label, legend,\\ntable, caption, tbody, tfoot, thead, tr, th, td,\\narticle, aside, canvas, details, embed,\\nfigure, figcaption, footer, header, hgroup,\\nmenu, nav, output, ruby, section, summary,\\ntime, mark, audio, video {\\n  margin: 0;\\n  padding: 0;\\n  border: 0;\\n  vertical-align: baseline; }\\n\\nhtml {\\n  font-size: 10px;\\n  width: 100%;\\n  height: 100%;\\n  -webkit-box-sizing: border-box;\\n  -moz-box-sizing: border-box;\\n  box-sizing: border-box; }\\n\\nbody {\\n  width: 100%;\\n  height: 100%;\\n  font-family: \\\"Noto Sans\\\", sans-serif;\\n  font-weight: normal;\\n  line-height: 1;\\n  padding-top: 5rem; }\\n\\n*, *::before, *::after {\\n  -webkit-box-sizing: inherit;\\n  -moz-box-sizing: inherit;\\n  box-sizing: inherit; }\\n\\n/* HTML5 display-role reset for older browsers */\\narticle, aside, details, figcaption, figure,\\nfooter, header, hgroup, menu, nav, section {\\n  display: block; }\\n\\nol, ul {\\n  list-style: none;\\n  font-size: 0; }\\n\\nblockquote, q {\\n  quotes: none; }\\n\\nblockquote:before, blockquote:after,\\nq:before, q:after {\\n  content: '';\\n  content: none; }\\n\\ntable {\\n  border-collapse: collapse;\\n  border-spacing: 0; }\\n\\n/* Header tag default size by KKambi */\\nh1 {\\n  font-size: 4.5em; }\\n\\nh2 {\\n  font-size: 3.5em; }\\n\\nh3 {\\n  font-size: 2.5em; }\\n\\n/* a none tag */\\na, a:link, a:hover, a:active, a:visited, button {\\n  cursor: pointer;\\n  text-decoration: none; }\\n\\n.icon {\\n  fill: currentColor; }\\n\\n.text-gray-light {\\n  color: #6a737d; }\\n\\n.text-gray-dark {\\n  color: #24292e; }\\n\", \"\"]);\n\n\n//# sourceURL=webpack:///./public/stylesheets/reset.sass?./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js");
+eval("exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\")(false);\n// Imports\nexports.push([module.i, \"@import url(https://fonts.googleapis.com/css?family=Noto+Sans:400,700&display=block);\", \"\"]);\n// Module\nexports.push([module.i, \"html, body, div, span, applet, object, iframe,\\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\\na, abbr, acronym, address, big, cite, code,\\ndel, dfn, em, img, ins, kbd, q, s, samp,\\nsmall, strike, strong, sub, sup, tt, var,\\nb, u, i, center,\\ndl, dt, dd, ol, ul, li,\\nfieldset, form, label, legend,\\ntable, caption, tbody, tfoot, thead, tr, th, td,\\narticle, aside, canvas, details, embed,\\nfigure, figcaption, footer, header, hgroup,\\nmenu, nav, output, ruby, section, summary,\\ntime, mark, audio, video {\\n  margin: 0;\\n  padding: 0;\\n  border: 0;\\n  vertical-align: baseline; }\\n\\nhtml {\\n  font-size: 10px;\\n  width: 100%;\\n  height: 100%;\\n  -webkit-box-sizing: border-box;\\n  -moz-box-sizing: border-box;\\n  box-sizing: border-box; }\\n\\nbody {\\n  width: 100%;\\n  height: 100%;\\n  font-family: \\\"Noto Sans\\\", sans-serif;\\n  font-weight: normal;\\n  line-height: 1;\\n  padding-top: 5rem; }\\n\\n*, *::before, *::after {\\n  -webkit-box-sizing: inherit;\\n  -moz-box-sizing: inherit;\\n  box-sizing: inherit; }\\n\\n/* HTML5 display-role reset for older browsers */\\narticle, aside, details, figcaption, figure,\\nfooter, header, hgroup, menu, nav, section {\\n  display: block; }\\n\\nol, ul {\\n  list-style: none;\\n  font-size: 0; }\\n\\nblockquote, q {\\n  quotes: none; }\\n\\nblockquote:before, blockquote:after,\\nq:before, q:after {\\n  content: '';\\n  content: none; }\\n\\ntable {\\n  border-collapse: collapse;\\n  border-spacing: 0; }\\n\\n/* Header tag default size by KKambi */\\nh1 {\\n  font-size: 4.5em; }\\n\\nh2 {\\n  font-size: 3.5em; }\\n\\nh3 {\\n  font-size: 2.5em; }\\n\\n/* a none tag */\\na, a:link, a:hover, a:active, a:visited, button {\\n  cursor: pointer;\\n  text-decoration: none; }\\n\\n.icon {\\n  fill: currentColor; }\\n\\n.text-gray-light {\\n  color: #6a737d; }\\n\\n.text-gray-dark {\\n  color: #24292e; }\\n\", \"\"]);\n\n\n//# sourceURL=webpack:///./src/stylesheets/reset.sass?./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js");
 
 /***/ }),
 
@@ -132,28 +132,6 @@ eval("\n\nvar stylesInDom = {};\n\nvar isOldIE = function isOldIE() {\n  var mem
 
 /***/ }),
 
-/***/ "./public/stylesheets/mainContainer.sass":
-/*!***********************************************!*\
-  !*** ./public/stylesheets/mainContainer.sass ***!
-  \***********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js!../../node_modules/sass-loader/dist/cjs.js!./mainContainer.sass */ \"./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./public/stylesheets/mainContainer.sass\");\n\nif (typeof content === 'string') {\n  content = [[module.i, content, '']];\n}\n\nvar options = {}\n\noptions.insert = \"head\";\noptions.singleton = false;\n\nvar update = __webpack_require__(/*! ../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ \"./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js\")(content, options);\n\nif (content.locals) {\n  module.exports = content.locals;\n}\n\n\n//# sourceURL=webpack:///./public/stylesheets/mainContainer.sass?");
-
-/***/ }),
-
-/***/ "./public/stylesheets/reset.sass":
-/*!***************************************!*\
-  !*** ./public/stylesheets/reset.sass ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js!../../node_modules/sass-loader/dist/cjs.js!./reset.sass */ \"./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./public/stylesheets/reset.sass\");\n\nif (typeof content === 'string') {\n  content = [[module.i, content, '']];\n}\n\nvar options = {}\n\noptions.insert = \"head\";\noptions.singleton = false;\n\nvar update = __webpack_require__(/*! ../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ \"./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js\")(content, options);\n\nif (content.locals) {\n  module.exports = content.locals;\n}\n\n\n//# sourceURL=webpack:///./public/stylesheets/reset.sass?");
-
-/***/ }),
-
 /***/ "./src/entry/index.entry.js":
 /*!**********************************!*\
   !*** ./src/entry/index.entry.js ***!
@@ -162,7 +140,7 @@ eval("var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _public_stylesheets_reset_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../public/stylesheets/reset.sass */ \"./public/stylesheets/reset.sass\");\n/* harmony import */ var _public_stylesheets_reset_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_public_stylesheets_reset_sass__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _javascripts_mainContiner_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../javascripts/mainContiner.js */ \"./src/javascripts/mainContiner.js\");\n/* harmony import */ var _javascripts_mainContiner_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_javascripts_mainContiner_js__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _public_stylesheets_mainContainer_sass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../public/stylesheets/mainContainer.sass */ \"./public/stylesheets/mainContainer.sass\");\n/* harmony import */ var _public_stylesheets_mainContainer_sass__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_public_stylesheets_mainContainer_sass__WEBPACK_IMPORTED_MODULE_2__);\n\r\n\r\n\r\n\n\n//# sourceURL=webpack:///./src/entry/index.entry.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _stylesheets_reset_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../stylesheets/reset.sass */ \"./src/stylesheets/reset.sass\");\n/* harmony import */ var _stylesheets_reset_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_stylesheets_reset_sass__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _javascripts_mainContiner_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../javascripts/mainContiner.js */ \"./src/javascripts/mainContiner.js\");\n/* harmony import */ var _javascripts_mainContiner_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_javascripts_mainContiner_js__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _stylesheets_mainContainer_sass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../stylesheets/mainContainer.sass */ \"./src/stylesheets/mainContainer.sass\");\n/* harmony import */ var _stylesheets_mainContainer_sass__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_stylesheets_mainContainer_sass__WEBPACK_IMPORTED_MODULE_2__);\n\r\n\r\n\r\n\n\n//# sourceURL=webpack:///./src/entry/index.entry.js?");
 
 /***/ }),
 
@@ -174,6 +152,28 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _pub
 /***/ (function(module, exports) {
 
 eval("\n\n//# sourceURL=webpack:///./src/javascripts/mainContiner.js?");
+
+/***/ }),
+
+/***/ "./src/stylesheets/mainContainer.sass":
+/*!********************************************!*\
+  !*** ./src/stylesheets/mainContainer.sass ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js!../../node_modules/sass-loader/dist/cjs.js!./mainContainer.sass */ \"./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/stylesheets/mainContainer.sass\");\n\nif (typeof content === 'string') {\n  content = [[module.i, content, '']];\n}\n\nvar options = {}\n\noptions.insert = \"head\";\noptions.singleton = false;\n\nvar update = __webpack_require__(/*! ../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ \"./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js\")(content, options);\n\nif (content.locals) {\n  module.exports = content.locals;\n}\n\n\n//# sourceURL=webpack:///./src/stylesheets/mainContainer.sass?");
+
+/***/ }),
+
+/***/ "./src/stylesheets/reset.sass":
+/*!************************************!*\
+  !*** ./src/stylesheets/reset.sass ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js!../../node_modules/sass-loader/dist/cjs.js!./reset.sass */ \"./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/stylesheets/reset.sass\");\n\nif (typeof content === 'string') {\n  content = [[module.i, content, '']];\n}\n\nvar options = {}\n\noptions.insert = \"head\";\noptions.singleton = false;\n\nvar update = __webpack_require__(/*! ../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ \"./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js\")(content, options);\n\nif (content.locals) {\n  module.exports = content.locals;\n}\n\n\n//# sourceURL=webpack:///./src/stylesheets/reset.sass?");
 
 /***/ })
 

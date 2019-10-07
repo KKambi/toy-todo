@@ -86,14 +86,14 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./public/stylesheets/navigation.sass":
-/*!*************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./public/stylesheets/navigation.sass ***!
-  \*************************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/stylesheets/navigation.sass":
+/*!**********************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/stylesheets/navigation.sass ***!
+  \**********************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\")(false);\n// Module\nexports.push([module.i, \"#header-container {\\n  width: 100%;\\n  height: 5rem;\\n  font-size: 1.8rem;\\n  font-weight: 100;\\n  background-color: #DB5A77;\\n  position: absolute;\\n  top: 0; }\\n\\n#navigation-container {\\n  height: 100%;\\n  display: flex;\\n  align-items: center; }\\n  #navigation-container a {\\n    margin-right: 1rem; }\\n  #navigation-container #navigation-button-index {\\n    color: #ffffff;\\n    margin-left: 2rem;\\n    margin-right: auto; }\\n  #navigation-container a, #navigation-container a:link, #navigation-container a:active, #navigation-container a:visited {\\n    color: #ffffff; }\\n  #navigation-container a:hover {\\n    color: #000000; }\\n\", \"\"]);\n\n\n//# sourceURL=webpack:///./public/stylesheets/navigation.sass?./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js");
+eval("exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\")(false);\n// Module\nexports.push([module.i, \"#header-container {\\n  width: 100%;\\n  height: 5rem;\\n  font-size: 1.8rem;\\n  font-weight: 100;\\n  background-color: #DB5A77;\\n  position: absolute;\\n  top: 0; }\\n\\n#navigation-container {\\n  height: 100%;\\n  display: flex;\\n  align-items: center; }\\n  #navigation-container a {\\n    margin-right: 1rem; }\\n  #navigation-container #navigation-button-index {\\n    margin-left: 2rem;\\n    margin-right: auto; }\\n  #navigation-container a, #navigation-container a:link, #navigation-container a:active, #navigation-container a:visited {\\n    color: #ffffff; }\\n  #navigation-container a:hover {\\n    color: #000000; }\\n\", \"\"]);\n\n\n//# sourceURL=webpack:///./src/stylesheets/navigation.sass?./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js");
 
 /***/ }),
 
@@ -121,17 +121,6 @@ eval("\n\nvar stylesInDom = {};\n\nvar isOldIE = function isOldIE() {\n  var mem
 
 /***/ }),
 
-/***/ "./public/stylesheets/navigation.sass":
-/*!********************************************!*\
-  !*** ./public/stylesheets/navigation.sass ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js!../../node_modules/sass-loader/dist/cjs.js!./navigation.sass */ \"./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./public/stylesheets/navigation.sass\");\n\nif (typeof content === 'string') {\n  content = [[module.i, content, '']];\n}\n\nvar options = {}\n\noptions.insert = \"head\";\noptions.singleton = false;\n\nvar update = __webpack_require__(/*! ../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ \"./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js\")(content, options);\n\nif (content.locals) {\n  module.exports = content.locals;\n}\n\n\n//# sourceURL=webpack:///./public/stylesheets/navigation.sass?");
-
-/***/ }),
-
 /***/ "./src/entry/navigation.entry.js":
 /*!***************************************!*\
   !*** ./src/entry/navigation.entry.js ***!
@@ -140,7 +129,7 @@ eval("var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _javascripts_navigation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../javascripts/navigation */ \"./src/javascripts/navigation.js\");\n/* harmony import */ var _javascripts_navigation__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_javascripts_navigation__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _public_stylesheets_navigation_sass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../public/stylesheets/navigation.sass */ \"./public/stylesheets/navigation.sass\");\n/* harmony import */ var _public_stylesheets_navigation_sass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_public_stylesheets_navigation_sass__WEBPACK_IMPORTED_MODULE_1__);\n\r\n\n\n//# sourceURL=webpack:///./src/entry/navigation.entry.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _javascripts_navigation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../javascripts/navigation */ \"./src/javascripts/navigation.js\");\n/* harmony import */ var _javascripts_navigation__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_javascripts_navigation__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _stylesheets_navigation_sass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../stylesheets/navigation.sass */ \"./src/stylesheets/navigation.sass\");\n/* harmony import */ var _stylesheets_navigation_sass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_stylesheets_navigation_sass__WEBPACK_IMPORTED_MODULE_1__);\n\r\n\n\n//# sourceURL=webpack:///./src/entry/navigation.entry.js?");
 
 /***/ }),
 
@@ -152,6 +141,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _jav
 /***/ (function(module, exports) {
 
 eval("//출처: https://poiemaweb.com/js-spa\r\nclass NavigationController {\r\n    constructor(headerContainer, mainContainer) {\r\n        this.headerContainer = headerContainer;\r\n        this.mainContainer = mainContainer;\r\n        this.endpoint = \"http://localhost:3000\"  //client endpoint\r\n        this.routes = {\r\n            '/': async () => {\r\n                const resJson = await this.get(`${this.endpoint}/`);\r\n                this.render(resJson);\r\n            },\r\n            '/users/find': async () => {\r\n                const resJson = await this.get(`${this.endpoint}/users/find`);\r\n                this.render(resJson);\r\n            },\r\n            '/sessions/new': async () => {\r\n                const resJson = await this.get(`${this.endpoint}/sessions/new`);\r\n                this.render(resJson);\r\n            },\r\n            otherwise(path) {\r\n                this.mainContainer.innerHTML = `${path} Not Found`;\r\n            }\r\n        }\r\n    }\r\n\r\n    init() {\r\n        //history pop을 위한 이벤트 핸들러 설정\r\n        window.addEventListener('popstate', event => {\r\n            // 이전페이지 / 다음페이지 button이 클릭되면 router를 호출\r\n            this.router(event.state.path);\r\n        })\r\n\r\n        //a 태그에 대한 라우팅 이벤트 핸들러 설정\r\n        this.headerContainer.addEventListener(\"click\", event => {\r\n            if (!event.target || event.target.nodeName !== 'A') return;\r\n            if (event.target.id === 'navigation-button-login') return;\r\n            event.preventDefault();\r\n            const path = event.target.getAttribute(\"href\")\r\n            history.pushState({ path }, null, path);    //history push\r\n            this.router(path);\r\n        })\r\n\r\n        //웹페이지가 처음 로딩되었을 때\r\n        // this.router('/');\r\n    }\r\n\r\n    async get(url) {\r\n        const response = await fetch(url, { \r\n            method: \"GET\", \r\n            headers: {\r\n                Accept: \"application/json\" \r\n            }\r\n        });\r\n        const data = await response.json();\r\n        return data;\r\n    }\r\n\r\n    router(path) {\r\n        (this.routes[path] || this.routes.otherwise)(path);\r\n    }\r\n\r\n    render(data) {\r\n        this.mainContainer.innerHTML = `<h1>${data.title}</h1><p>${data.content}</p>`;\r\n    }\r\n\r\n    renderHtml(html) {\r\n        this.mainContainer.innerHTML = html;\r\n    }\r\n}\r\n\r\nconst headerContainer = document.getElementById(\"header-container\")\r\nconst mainContainer = document.getElementById(\"main-container\")\r\nconst navigationController = new NavigationController(headerContainer, mainContainer)\r\nnavigationController.init()\n\n//# sourceURL=webpack:///./src/javascripts/navigation.js?");
+
+/***/ }),
+
+/***/ "./src/stylesheets/navigation.sass":
+/*!*****************************************!*\
+  !*** ./src/stylesheets/navigation.sass ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js!../../node_modules/sass-loader/dist/cjs.js!./navigation.sass */ \"./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/stylesheets/navigation.sass\");\n\nif (typeof content === 'string') {\n  content = [[module.i, content, '']];\n}\n\nvar options = {}\n\noptions.insert = \"head\";\noptions.singleton = false;\n\nvar update = __webpack_require__(/*! ../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ \"./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js\")(content, options);\n\nif (content.locals) {\n  module.exports = content.locals;\n}\n\n\n//# sourceURL=webpack:///./src/stylesheets/navigation.sass?");
 
 /***/ })
 

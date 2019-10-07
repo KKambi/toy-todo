@@ -1,4 +1,4 @@
-const util_encrpytion = require('../javascripts/uitl/util_encryption')
+const util_encrpytion = require('../javascripts/util/util_encryption')
 
 class SessionController {
     constructor(User){

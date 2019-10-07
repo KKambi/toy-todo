@@ -24,8 +24,8 @@ const redisClient = redis.createClient({
 })
 
 // 유틸 라이브러리
-const util_uuid = require('./src/javascripts/uitl/util_uuid')
-const util_cookie = require('./src/javascripts/uitl/util_cookie')
+const util_uuid = require('./src/javascripts/util/util_uuid')
+const util_cookie = require('./src/javascripts/util/util_cookie')
 
 // 라우터 설정
 const indexRouter = require('./routes/index');

@@ -7,9 +7,14 @@ $column-background-color: #EEF1F3
 
 $card-background-color: #FFFFFF
 $card-number-background-color: #CFD2D4
+$card-padding: 1.5rem
+$card-margin: 0.8rem
+$card-box-shadow: 0 0.3rem 0.3rem #e1e4e8
 
-$button-color: #586069
-$button-hover-color: #DB5A77
+$a-color: #586069
+$a-hover-color: #DB5A77
+
+$button-height: 3.5rem
 
 #main-container
     padding: 2rem
@@ -25,6 +30,7 @@ $button-hover-color: #DB5A77
     border: $container-border-width $container-border-style $container-border-color
     border-radius: $container-border-radius
     background-color: $column-background-color
+    overflow-y: auto
 
     .column-header-container
         display: flex
@@ -32,7 +38,7 @@ $button-hover-color: #DB5A77
         padding: 1.6rem 1rem 1rem 
 
     .card-container
-        padding: 1.5rem
+        padding: $card-padding
         margin: 0 0.8rem 0.8rem 0.8rem
         background-color: $card-background-color
 
@@ -55,11 +61,11 @@ $button-hover-color: #DB5A77
     button
         border: 0
         background-color: transparent
-        color: $button-color
+        color: $a-color
         padding: 0 0.4rem 0 0.4rem
     
     button:hover
-        color: $button-hover-color
+        color: $a-hover-color
 
 .card-container
     border: $container-border-width $container-border-style $container-border-color
@@ -77,3 +83,52 @@ $button-hover-color: #DB5A77
 
     .card-footer-container
         font-size: 90%
+
+.card-add-container
+    margin: $card-margin
+
+    .card-content
+        height: 7rem
+        padding: 1rem
+        font-family: inherit
+        font-size: inherit
+        width: 100%
+        resize: vertical
+        border: $container-border-width $container-border-style #CDD0D2
+        border-radius: $container-border-radius
+        box-shadow: inset $card-box-shadow
+
+    .card-buttons
+        display: flex
+        height: $button-height
+        margin-top: $card-margin
+        font-weight: 600
+
+        .card-add-button
+            margin-right: 0.4rem
+            background: $a-hover-color
+            color: #FFFFFF
+        .card-cancel-button
+            background: #FAFBFC
+            margin-left: 0.4rem
+        .card-add-button
+            background: linear-gradient(-180deg, #DB7189, #DF4265)
+        .card-cancel-button:hover
+            background: linear-gradient(-180deg,#f0f3f6,#e6ebf1 90%)
+        
+
+        button
+            opacity: 0.9
+            flex-grow: 1
+            flex-basis: 0
+            text-align: center
+            display: flex
+            flex-direction: column
+            justify-content: center
+            border: $container-border-width $container-border-style #c5cad0
+            border-radius: $container-border-radius
+
+        button:hover
+            opacity: 1
+            border: $container-border-width $container-border-style #b8b3b3
+
