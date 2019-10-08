@@ -29,10 +29,10 @@ const columnHTML = (sectionId, name, sort) =>
     </div>
     <div class="card-add-container" style="display: none;">
         <form method="POST" enctype="multipart/form-data" class="card-content-form">
-            <textarea class="card-content" name="content" placeholder="Enter a note"></textarea>
+            <textarea class="card-content" name="content" placeholder="Enter a note" maxlength="500"></textarea>
         </form>
         <div class="card-buttons">
-            <button class="card-add-button">Add</button>
+            <button class="card-add-button" disabled="">Add</button>
             <button class="card-cancel-button">Cancel</button>
         </div>
     </div>
@@ -50,7 +50,10 @@ export default class Column {
     init(){
         this.render()
         this.selfContainer = this.findSelfContainer()
+        this.cardAddButton = this.findCardAddButton()
+        this.textArea = this.findTextArea()
         this.addToggleEventListener()
+        this.addActivateButtonListener()
         this.addInsertCardEventListener()
     }
 
@@ -61,6 +64,14 @@ export default class Column {
     findSelfContainer(){
         // column-container
         return document.querySelector(`[data-section-id="${this.sectionId}"]`);
+    }
+
+    findCardAddButton(){
+        return this.selfContainer.querySelector('.card-add-button')
+    }
+
+    findTextArea(){
+        return this.selfContainer.querySelector('.card-content')
     }
 
     addToggleEventListener(){
@@ -77,9 +88,15 @@ export default class Column {
         cardAddContainer.style.display =  next
     }
 
+    addActivateButtonListener(){
+        this.textArea.addEventListener('input', () => {
+            if (this.textArea.textLength > 0) this.cardAddButton.removeAttribute('disabled')
+            else this.cardAddButton.setAttribute('disabled', "")
+        })
+    }
+
     addInsertCardEventListener(){
-        const cardAddButton = this.selfContainer.querySelector('.card-add-button')
-        cardAddButton.addEventListener('click', (event) => {
+        this.cardAddButton.addEventListener('click', (event) => {
             event.preventDefault()
             // Card-content가 없다면 card-add-button이 활성화되지 않음
             // 따라서 빈 내용이 들어가는 경우는 없다
@@ -94,12 +111,11 @@ export default class Column {
 
         // DB로 insert명령을 보내는 작업
         const jsonResponse = await this.submitCardCreateRequest(this.sectionId, cardContent, cardSort)
+        
+        // view단에 추가된 card를 반영하는 작업
         const cardId = jsonResponse["card_id"]
         const cardWriter = jsonResponse["writer"]
-
-        // view단에 추가된 card를 반영하는 작업
-        const newCard = new Card(this.selfContainer, cardId, cardContent, cardSort, cardWriter)
-        newCard.init()
+        this.createCardInView(cardId, cardContent, cardSort, cardWriter)
     }
 
     async submitCardCreateRequest(sectionId, content, cardSort){
@@ -116,5 +132,11 @@ export default class Column {
         })
         const cardId = await result.json()
         return cardId
+    }
+
+    createCardInView(cardId, cardContent, cardSort, cardWriter){
+        const newCard = new Card(this.selfContainer, cardId, cardContent, cardSort, cardWriter)
+        newCard.init()
+        this.cards.push(newCard)
     }
 }
