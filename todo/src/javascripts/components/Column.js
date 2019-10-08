@@ -50,10 +50,13 @@ export default class Column {
     init(){
         this.render()
         this.selfContainer = this.findSelfContainer()
+        this.cardAddContainer = this.findCardAddContainer()
         this.cardAddButton = this.findCardAddButton()
+        this.cancelButton = this.findCancelButton()
         this.textArea = this.findTextArea()
         this.addToggleEventListener()
         this.addActivateButtonListener()
+        this.addCancelButtonListener()
         this.addInsertCardEventListener()
     }
 
@@ -66,12 +69,20 @@ export default class Column {
         return document.querySelector(`[data-section-id="${this.sectionId}"]`);
     }
 
+    findCardAddContainer(){
+        return this.selfContainer.querySelector('.card-add-container')
+    }
+
     findCardAddButton(){
-        return this.selfContainer.querySelector('.card-add-button')
+        return this.cardAddContainer.querySelector('.card-add-button')
+    }
+
+    findCancelButton(){
+        return this.cardAddContainer.querySelector('.card-cancel-button')
     }
 
     findTextArea(){
-        return this.selfContainer.querySelector('.card-content')
+        return this.cardAddContainer.querySelector('.card-content')
     }
 
     addToggleEventListener(){
@@ -83,9 +94,8 @@ export default class Column {
     }
 
     toggleAddSection(){
-        const cardAddContainer = this.selfContainer.querySelector('.card-add-container')
-        const next = cardAddContainer.style.display === 'none' ? 'block' : 'none';
-        cardAddContainer.style.display =  next
+        const next = this.cardAddContainer.style.display === 'none' ? 'block' : 'none';
+        this.cardAddContainer.style.display = next
     }
 
     addActivateButtonListener(){
@@ -95,13 +105,23 @@ export default class Column {
         })
     }
 
+    addCancelButtonListener(){
+        this.cancelButton.addEventListener('click', () => {
+            this.toggleAddSection()
+        })
+    }
+
     addInsertCardEventListener(){
         this.cardAddButton.addEventListener('click', (event) => {
             event.preventDefault()
-            // Card-content가 없다면 card-add-button이 활성화되지 않음
-            // 따라서 빈 내용이 들어가는 경우는 없다
+
+            // 카드 추가
             const formData = new FormData(this.selfContainer.querySelector('.card-content-form'))
             this.createCard(formData)
+
+            // 텍스트에어리어 초기화
+            this.textArea.value = ""
+            this.cardAddButton.setAttribute('disabled', "")
         })
     }
 
