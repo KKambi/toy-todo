@@ -50,6 +50,7 @@ export default class Column {
     init(){
         this.render()
         this.selfContainer = this.findSelfContainer()
+        this.cardNumberContainer = this.findCardNumberContainer()
         this.cardAddContainer = this.findCardAddContainer()
         this.cardAddButton = this.findCardAddButton()
         this.cancelButton = this.findCancelButton()
@@ -67,6 +68,10 @@ export default class Column {
     findSelfContainer(){
         // column-container
         return document.querySelector(`[data-section-id="${this.sectionId}"]`);
+    }
+
+    findCardNumberContainer(){
+        return this.selfContainer.querySelector('.column-card-number')
     }
 
     findCardAddContainer(){
@@ -112,16 +117,19 @@ export default class Column {
     }
 
     addInsertCardEventListener(){
-        this.cardAddButton.addEventListener('click', (event) => {
+        this.cardAddButton.addEventListener('click', async (event) => {
             event.preventDefault()
 
             // 카드 추가
             const formData = new FormData(this.selfContainer.querySelector('.card-content-form'))
-            this.createCard(formData)
+            await this.createCard(formData)
 
             // 텍스트에어리어 초기화
             this.textArea.value = ""
             this.cardAddButton.setAttribute('disabled', "")
+
+            // 할일개수 변경
+            this.cardNumberContainer.textContent = this.cards.length
         })
     }
 
