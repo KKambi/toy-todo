@@ -21,7 +21,9 @@ class IModelWithoutId {
                 console.log(err)
                 return false;
             }
+            //FIXME: insertQuery의 ? 개수를 동적으로 바꿔야함
             const insertQuery = `INSERT INTO ${this.TABLE_NAME}} (${this.ATTRIBUTE_LIST}) VALUES (?, ?, ?, ?);`
+            //FIXME: insertValue동적으로 바꿔야함
             const insertValue = [`${params.user}`, `${params.password}`, `${params.name}`, `${params.is_admin}`]
             connection = await util_dbPool.pool.getConnection(async conn => conn);
             try {

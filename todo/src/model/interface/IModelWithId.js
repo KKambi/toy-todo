@@ -12,7 +12,7 @@ const util_dbPool = require('../../javascripts/util/util_dbPool')
 class IModelWithId {
     constructor(TABLE_NAME, ATTRIBUTE_NUMBERS, ATTRIBUTE_LIST){
         this.TABLE_NAME = TABLE_NAME
-        this.ATTRIBUTE_NUMBERS = ATTRIBUTE_NUMBERS
+        this.ATTRIBUTE_NUMBERS = Number(ATTRIBUTE_NUMBERS)
         this.ATTRIBUTE_LIST = ATTRIBUTE_LIST
     }
 
@@ -25,8 +25,16 @@ class IModelWithId {
                 console.log(err)
                 return false;
             }
-            const insertQuery = `INSERT INTO ${this.TABLE_NAME}} (${this.ATTRIBUTE_LIST}) VALUES (?, ?, ?, ?);`
-            const insertValue = [`${params.user}`, `${params.password}`, `${params.name}`, `${params.is_admin}`]
+            let insertQuery = `INSERT INTO ${this.TABLE_NAME} (${this.ATTRIBUTE_LIST}) VALUES (`
+            for (let i=0; i<this.ATTRIBUTE_NUMBERS-1; i++){
+                insertQuery += '?,'
+            }
+            insertQuery += '?)'
+            
+            let insertValue = []
+            for (const key in params){
+                insertValue.push(`${params[key]}`)
+            }
             connection = await util_dbPool.pool.getConnection(async conn => conn);
             try {
                 await connection.execute(insertQuery, insertValue);
@@ -47,6 +55,7 @@ class IModelWithId {
     async find(attribute, identifier){
         try {
             const findQuery = `SELECT id, ${this.ATTRIBUTE_LIST} FROM ${this.TABLE_NAME} WHERE ${attribute} = ?;`
+            console.log(findQuery)
             const findValue = [`${identifier}`]
             const connection = await util_dbPool.pool.getConnection(async conn => conn);
             try {

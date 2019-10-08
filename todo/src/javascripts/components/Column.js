@@ -42,6 +42,7 @@ export default class Column {
         this.mainContainer = mainContainer
         this.name = name
         this.sort = sort
+        this.cards = []
     }
 
     init(){
@@ -81,14 +82,34 @@ export default class Column {
             // Card-content가 없다면 card-add-button이 활성화되지 않음
             // 따라서 빈 내용이 들어가는 경우는 없다
             const formData = new FormData(this.selfContainer.querySelector('.card-content-form'))
-            this.insertCard(formData)
+            this.createCard(formData)
         })
     }
 
-    insertCard(formData){
+    async createCard(formData){
         const content = formData.get('content')
-        console.log(content)
+        const cardSort = this.cards.length
+        // DB로 insert명령을 보내는 작업
+        const cardData = await this.submitCardCreateRequest(this.sectionId, content, cardSort)
+        console.log(cardData)
+
         // const newCard = new Card(this.selfContainer, this.sectionId)
         // newCard.init()
+    }
+
+    async submitCardCreateRequest(sectionId, content, cardSort){
+        const response = await fetch('http://localhost:3000/api/card/create', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                sectionId,
+                content,
+                cardSort
+            })
+        })
+        const cardData = await response.json()
+        return cardData;
     }
 }
