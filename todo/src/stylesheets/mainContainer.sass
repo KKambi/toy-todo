@@ -12,6 +12,7 @@ $card-number-background-color: #CFD2D4
 $card-padding: 1.5rem
 $card-margin: 0.8rem
 $card-box-shadow: 0 0.3rem 0.3rem #e1e4e8
+$card-box-focus-shadow: 0 0 0 0.2em rgba(219, 90, 119, 0.3)
 
 $button-color: #586069
 $button-height: 3.5rem
@@ -128,6 +129,10 @@ $edit-box-shadow: 0 1rem 1.5rem #e1e4e8
         border: $container-border-width $container-border-style #CDD0D2
         border-radius: $container-border-radius
         box-shadow: inset $card-box-shadow
+
+    .card-content:focus
+        border-color: $concept-color
+        box-shadow: inset $card-box-shadow, $card-box-focus-shadow
 
     .card-buttons
         display: flex
