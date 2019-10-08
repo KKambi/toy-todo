@@ -1,5 +1,5 @@
-const cardHTML = (cardId, content, sort, writer) => 
-`<div class="card-container" data-card-id="${cardId}" data-card-sort="${sort}">
+const cardHTML = (content, sort, writer) => 
+`<div class="card-container" data-card-sort="${sort}">
     <div class="card-header-container">
         <span class="card-document-icon">
             <svg class="icon icon-document" viewBox="0 0 14 16" width="14" heigth="16" aria-hidden="true">
@@ -32,9 +32,18 @@ export default class Card {
 
     init(){
         this.render()
+        this.selfContainer = this.findSelfContainer()
     }
 
     render(){
-        this.columnContainer.insertAdjacentHTML('beforeend', cardHTML(this.id, this.content, this.sort, this.writer))
+        this.columnContainer.insertAdjacentHTML('beforeend', cardHTML(this.content, this.sort, this.writer))
+    }
+
+    findSelfContainer(){
+        this.columnContainer.querySelector()
+    }
+
+    edit(newContent){
+        this.columnContainer.querySelector
     }
 }
