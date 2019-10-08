@@ -11,6 +11,11 @@ const columnHTML = (sectionId, name, sort) =>
                 ${name}
             </div>
         </div>
+
+        <div class="column-edit-container" style="display: none">
+            <button class="column-button">Edit Column</button>
+            <button class="column-button">Delete Column</button>
+        </div>
         
         <div class="column-header-menu">
             <button class="column-toggle-button" type="button" aria-label="Add a note to this column">
@@ -49,13 +54,21 @@ export default class Column {
 
     init(){
         this.render()
+
         this.selfContainer = this.findSelfContainer()
+
+        this.toggleButton = this.findToggleButton()
+        this.columnEditButton = this.findColumnEditButton()
+        this.columnEditContainer = this.findColumnEditContainer()
         this.cardNumberContainer = this.findCardNumberContainer()
         this.cardAddContainer = this.findCardAddContainer()
+
         this.cardAddButton = this.findCardAddButton()
         this.cancelButton = this.findCancelButton()
         this.textArea = this.findTextArea()
+
         this.addToggleEventListener()
+        this.addColumnEditEventListener()
         this.addActivateButtonListener()
         this.addCancelButtonListener()
         this.addInsertCardEventListener()
@@ -68,6 +81,18 @@ export default class Column {
     findSelfContainer(){
         // column-container
         return document.querySelector(`[data-section-id="${this.sectionId}"]`);
+    }
+
+    findToggleButton(){
+        return this.selfContainer.querySelector('.column-toggle-button')
+    }
+
+    findColumnEditButton(){
+        return this.selfContainer.querySelector('.column-edit-button')
+    }
+
+    findColumnEditContainer(){
+        return this.selfContainer.querySelector('.column-edit-container')
     }
 
     findCardNumberContainer(){
@@ -90,17 +115,29 @@ export default class Column {
         return this.cardAddContainer.querySelector('.card-content')
     }
 
+    toggleDisplay(element, display){
+        const next = element.style.display === 'none' ? `${display}` : 'none';
+        element.style.display = next        
+    }
+
     addToggleEventListener(){
-        const toggleButton = this.selfContainer.querySelector(".column-toggle-button")
-        toggleButton.addEventListener('click', (event) => {
-            if (!event.target) return;
+        this.toggleButton.addEventListener('click', () => {
             this.toggleAddSection()
         })
     }
 
     toggleAddSection(){
-        const next = this.cardAddContainer.style.display === 'none' ? 'block' : 'none';
-        this.cardAddContainer.style.display = next
+        this.toggleDisplay(this.cardAddContainer, 'block')
+    }
+
+    addColumnEditEventListener(){
+        this.columnEditButton.addEventListener('click', () => {
+            this.toggleEditSection()
+        })
+    }
+
+    toggleEditSection(){
+        this.toggleDisplay(this.columnEditContainer, 'flex')
     }
 
     addActivateButtonListener(){

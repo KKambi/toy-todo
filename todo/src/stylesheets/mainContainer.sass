@@ -1,3 +1,5 @@
+$concept-color: #DB5A77
+
 $container-border-width: 0.1rem
 $container-border-style: solid
 $container-border-color: #e1e4e8
@@ -11,10 +13,10 @@ $card-padding: 1.5rem
 $card-margin: 0.8rem
 $card-box-shadow: 0 0.3rem 0.3rem #e1e4e8
 
-$a-color: #586069
-$a-hover-color: #DB5A77
-
+$button-color: #586069
 $button-height: 3.5rem
+
+$edit-box-shadow: 0 1rem 1.5rem #e1e4e8
 
 #main-container
     padding: 2rem
@@ -38,15 +40,38 @@ $button-height: 3.5rem
     background-color: $column-background-color
     overflow-y: auto
 
-    .column-header-container
-        display: flex
-        justify-content: space-between
-        padding: 1.6rem 1rem 1rem 
+.column-header-container
+    display: flex
+    justify-content: space-between
+    padding: 1.6rem 1rem 1rem 
+    position: relative
 
-    .card-container
-        padding: $card-padding
-        margin: 0 0.8rem 0.8rem 0.8rem
+    .column-edit-container
+        width: 20rem
+        position: absolute
+        left: auto
+        right: 0
+        margin-top: 2rem
         background-color: $card-background-color
+        border: $container-border-width $container-border-style $container-border-color
+        border-radius: $container-border-radius
+        display: flex
+        flex-direction: column
+        box-shadow: $edit-box-shadow
+
+        button
+            height: 3rem
+            text-align: start
+            padding: 0.5rem 0 0.5rem 2rem
+
+        button:hover
+            background-color: $concept-color
+            color: #FFFFFF
+
+.card-container
+    padding: $card-padding
+    margin: 0 0.8rem 0.8rem 0.8rem
+    background-color: $card-background-color
 
 .column-header-title
     display: flex
@@ -67,11 +92,11 @@ $button-height: 3.5rem
     button
         border: 0
         background-color: transparent
-        color: $a-color
+        color: $button-color
         padding: 0 0.4rem 0 0.4rem
-    
+
     button:hover
-        color: $a-hover-color
+        color: $concept-color
 
 .card-container
     border: $container-border-width $container-border-style $container-border-color
@@ -112,7 +137,7 @@ $button-height: 3.5rem
 
         .card-add-button
             margin-right: 0.4rem
-            background: $a-hover-color
+            background: $concept-color
             color: #FFFFFF
         .card-cancel-button
             background: #FAFBFC
