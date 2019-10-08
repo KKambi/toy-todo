@@ -37,9 +37,9 @@ class IModelWithId {
             }
             connection = await util_dbPool.pool.getConnection(async conn => conn);
             try {
-                await connection.execute(insertQuery, insertValue);
+                const result = await connection.execute(insertQuery, insertValue)
                 connection.release();
-                return true;
+                return result[0].insertId;
             } catch(err){
                 console.log(`Query Error ~ ${err}`);
                 connection.release();

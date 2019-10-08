@@ -1,3 +1,5 @@
+import Card from './Card'
+
 const columnHTML = (sectionId, name, sort) => 
 `<div class="column-container" data-section-id="${sectionId}" data-column-sort="${sort}">
     <div class="column-header-container">
@@ -87,18 +89,21 @@ export default class Column {
     }
 
     async createCard(formData){
-        const content = formData.get('content')
+        const cardContent = formData.get('content')
         const cardSort = this.cards.length
-        // DB로 insert명령을 보내는 작업
-        const cardData = await this.submitCardCreateRequest(this.sectionId, content, cardSort)
-        console.log(cardData)
 
-        // const newCard = new Card(this.selfContainer, this.sectionId)
-        // newCard.init()
+        // DB로 insert명령을 보내는 작업
+        const jsonResponse = await this.submitCardCreateRequest(this.sectionId, cardContent, cardSort)
+        const cardId = jsonResponse["card_id"]
+        const cardWriter = jsonResponse["writer"]
+
+        // view단에 추가된 card를 반영하는 작업
+        const newCard = new Card(this.selfContainer, cardId, cardContent, cardSort, cardWriter)
+        newCard.init()
     }
 
     async submitCardCreateRequest(sectionId, content, cardSort){
-        const response = await fetch('http://localhost:3000/api/card/create', {
+        const result = await fetch('http://localhost:3000/api/card/create', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
@@ -109,7 +114,7 @@ export default class Column {
                 cardSort
             })
         })
-        const cardData = await response.json()
-        return cardData;
+        const cardId = await result.json()
+        return cardId
     }
 }
