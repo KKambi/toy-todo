@@ -114,10 +114,17 @@ export default class Column {
     findTextArea(){
         return this.cardAddContainer.querySelector('.card-content')
     }
+    
+    hide(element){
+        element.style.display = 'none' 
+    }
+
+    show(element, display){
+        element.style.display = display
+    }
 
     toggleDisplay(element, display){
-        const next = element.style.display === 'none' ? `${display}` : 'none';
-        element.style.display = next        
+        element.style.display === 'none' ? this.show(element, display) : this.hide(element);      
     }
 
     addToggleEventListener(){
@@ -133,6 +140,11 @@ export default class Column {
     addColumnEditEventListener(){
         this.columnEditButton.addEventListener('click', () => {
             this.toggleEditSection()
+        })
+        document.addEventListener('click', (event) => {
+            const isClickInside = this.columnEditContainer.contains(event.target) || this.columnEditButton.contains(event.target)
+            if (isClickInside) return
+            this.hide(this.columnEditContainer)
         })
     }
 
