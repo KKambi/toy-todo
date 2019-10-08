@@ -1,5 +1,5 @@
-const columnHTML = (name, sort) => 
-`<div class="column-container" data-column-name="${name}" data-column-sort="${sort}">
+const columnHTML = (sectionId, name, sort) => 
+`<div class="column-container" data-section-id="${sectionId}" data-column-sort="${sort}">
     <div class="column-header-container">
         <div class="column-header-title">
             <div class="column-card-number">
@@ -26,8 +26,9 @@ const columnHTML = (name, sort) =>
         </div>
     </div>
     <div class="card-add-container" style="display: none;">
-        <textarea class="card-content" name="content" placeholder="Enter a note">
-        </textarea>
+        <form method="POST" enctype="multipart/form-data" class="card-content-form">
+            <textarea class="card-content" name="content" placeholder="Enter a note"></textarea>
+        </form>
         <div class="card-buttons">
             <button class="card-add-button">Add</button>
             <button class="card-cancel-button">Cancel</button>
@@ -36,7 +37,8 @@ const columnHTML = (name, sort) =>
 </div>`
 
 export default class Column {
-    constructor(mainContainer, name, sort){
+    constructor(mainContainer, sectionId, name, sort){
+        this.sectionId = sectionId
         this.mainContainer = mainContainer
         this.name = name
         this.sort = sort
@@ -44,21 +46,23 @@ export default class Column {
 
     init(){
         this.render()
-        this.selfContainer = this.findSelf()
+        this.selfContainer = this.findSelfContainer()
         this.addToggleEventListener()
+        this.addInsertCardEventListener()
     }
 
     render(){
-        this.mainContainer.insertAdjacentHTML('beforeend', columnHTML(this.name, this.sort))
+        this.mainContainer.insertAdjacentHTML('beforeend', columnHTML(this.sectionId, this.name, this.sort))
     }
 
-    findSelf(){
-        return document.querySelector(`[data-column-name="${this.name}"]`);
+    findSelfContainer(){
+        // column-container
+        return document.querySelector(`[data-section-id="${this.sectionId}"]`);
     }
 
     addToggleEventListener(){
         const toggleButton = this.selfContainer.querySelector(".column-toggle-button")
-        toggleButton.addEventListener("click", (event) => {
+        toggleButton.addEventListener('click', (event) => {
             if (!event.target) return;
             this.toggleAddSection()
         })
@@ -68,5 +72,23 @@ export default class Column {
         const cardAddContainer = this.selfContainer.querySelector('.card-add-container')
         const next = cardAddContainer.style.display === 'none' ? 'block' : 'none';
         cardAddContainer.style.display =  next
+    }
+
+    addInsertCardEventListener(){
+        const cardAddButton = this.selfContainer.querySelector('.card-add-button')
+        cardAddButton.addEventListener('click', (event) => {
+            event.preventDefault()
+            // Card-content가 없다면 card-add-button이 활성화되지 않음
+            // 따라서 빈 내용이 들어가는 경우는 없다
+            const formData = new FormData(this.selfContainer.querySelector('.card-content-form'))
+            this.insertCard(formData)
+        })
+    }
+
+    insertCard(formData){
+        const content = formData.get('content')
+        console.log(content)
+        // const newCard = new Card(this.selfContainer, this.sectionId)
+        // newCard.init()
     }
 }
