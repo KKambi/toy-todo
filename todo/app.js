@@ -40,19 +40,23 @@ const app = express();
 require('dotenv').config();
 
 // session 설정
-app.use(session({
-    name: process.env.SESSION_ID_NAME,
-    secret: process.env.SESSION_SECRET,
-    genid: function (req) {
-        return util_uuid.createUniqueId();  //uuid 라이브러리릍 통해 세션id 반환
-    },
-    store: new redisStore({
-        client: redisClient
-    }),
-    saveUninitialized: false,   //true를 주면 세션정보가 계속 생성됨. false가 경쟁상태를 방지한다.
-    resave: false,
-    cookie: util_cookie.COOKIE_OPTIONS,
-}))
+try{
+    app.use(session({
+        name: process.env.SESSION_ID_NAME,
+        secret: process.env.SESSION_SECRET,
+        genid: function (req) {
+            return util_uuid.createUniqueId();  //uuid 라이브러리릍 통해 세션id 반환
+        },
+        store: new redisStore({
+            client: redisClient
+        }),
+        saveUninitialized: false,   //true를 주면 세션정보가 계속 생성됨. false가 경쟁상태를 방지한다.
+        resave: false,
+        cookie: util_cookie.COOKIE_OPTIONS,
+    }))
+} catch(err) {
+    next(err);
+}
 
 // 패스포트 설정
 app.use(passport.initialize()); // passport 구동
