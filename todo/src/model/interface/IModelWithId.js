@@ -55,7 +55,6 @@ class IModelWithId {
     async find(attribute, identifier){
         try {
             const findQuery = `SELECT id, ${this.ATTRIBUTE_LIST} FROM ${this.TABLE_NAME} WHERE ${attribute} = ?;`
-            console.log(findQuery)
             const findValue = [`${identifier}`]
             const connection = await util_dbPool.pool.getConnection(async conn => conn);
             try {
@@ -116,7 +115,7 @@ class IModelWithId {
 
     async delete(attribute, identifier){
         try {
-            const deleteQuery = `DELETE ${this.TABLE_NAME} WHERE ${attribute} = ?;`
+            const deleteQuery = `DELETE FROM ${this.TABLE_NAME} WHERE ${attribute} = ?;`
             const deleteValue = [`${identifier}`]
             const connection = await util_dbPool.pool.getConnection(async conn => conn);
             try {
