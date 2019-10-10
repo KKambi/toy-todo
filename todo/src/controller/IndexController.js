@@ -4,7 +4,7 @@ class Index{
 
     }
 
-    getAllSectionData(user_id){
+    renderAllSection(){
 
     }
 }

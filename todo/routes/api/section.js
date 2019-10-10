@@ -13,15 +13,13 @@ const SectionModel = new SectionModelClass(
 const SectionController = new SectionControllerClass(SectionModel)
 
 // Column All Read 요청
-router.post('/all', async function (req, res, next) {
-    const user_id = req.body.user_id
+router.get('/all', async function (req, res, next) {
+    const user_id = req.user.user_id
 
     const allSectionData = await SectionController.getAllSection(user_id)
     SectionController.renderAllSection(allSectionData)
 
-    res.json({
-        allSectionData
-    })
+    res.json(allSectionData)
 });
 
 // Column Create 요청

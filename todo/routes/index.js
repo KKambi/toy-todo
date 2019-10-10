@@ -6,8 +6,20 @@ const fs = require('fs');
 const Index = require('../src/controller/IndexController')
 const IndexController = new Index()
 
-router.get('/', function (req, res, next){
-    const allSectionData = IndexController.getAllSectionData(req.user.user_id)
+const SectionControllerClass = require('../src/controller/SectionController')
+const SectionModelClass = require('../src/model/Section')
+
+const SectionController = new SectionControllerClass(
+    new SectionModelClass(
+        process.env.SECTION_TABLE_NAME,
+        process.env.SECTION_TABLE_PARAMS_NUMBER,
+        process.env.SECTION_TABLE_PARMAS_LIST
+    )
+)
+
+router.get('/', async function (req, res, next){
+    const allSectionData = await SectionController.getAllSection(req.user.user_id)
+    IndexController.renderAllSection(allSectionData)
 
     const signed = req.cookies[process.env.SESSION_ID_NAME] ? 'true':'false'
     try{
