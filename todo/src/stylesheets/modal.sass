@@ -77,9 +77,14 @@ $button-color: #586069
                 color: #FFFFFF
                 margin: 1rem 0 0 0
                 padding: 1rem
-                background: linear-gradient(-180deg, #DB7189, #DF4265)
+                background: $concept-color
                 border: $container-border
                 border-radius: $container-border-radius
 
             .modal-update-button:hover
-                background: linear-gradient(-180deg,#f0f3f6,#e6ebf1 90%)
+                opacity: 1
+                background: linear-gradient(-180deg, #DB7189, #DF4265)
+                border: $container-border-width $container-border-style #b8b3b3
+
+            .modal-update-button:disabled
+                opacity: 0.4
