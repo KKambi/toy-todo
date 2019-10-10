@@ -4,7 +4,7 @@ import '../../stylesheets/modal.sass'
 import util_dom from '../util/util_dom'
 
 const modalHTML = (name) => 
-`<div class="modal">
+`<div class="modal" style="visibility: hidden; opacity: 0">
     <div class="modal-content">
         <div class="modal-header">
             Edit ${name}
@@ -26,9 +26,10 @@ const modalHTML = (name) =>
 </div>`
 
 export default class Modal{
-    constructor(container){
+    constructor(container, sectionId){
         this.HTML = modalHTML
         this.container = container
+        this.sectionId = sectionId
     }
 
     init(){
@@ -39,6 +40,7 @@ export default class Modal{
         this.cancelButton = this.findCancelButton()
         this.addActivateButtonListener()
         this.addCancelButtonListener()
+        this.addEditColumnEventListener()
     }
 
     findSelf(){
@@ -73,13 +75,63 @@ export default class Modal{
             this.closeModal()
         })
         document.addEventListener('click', (event) => {
-            const isClickInside = this.contentContainer.contains(event.target)
+            const isClickInside = this.contentContainer.contains(event.target) || event.target.className === 'column-edit-button'
             if (isClickInside) return
-            util_dom.hide(this.self)
+            util_dom.hideForVisibility(this.self)
+        })
+    }
+    
+    addEditColumnEventListener(){
+        this.updateButton.addEventListener('click', async () => {
+            event.preventDefault()
+
+            // 칼럼 제목 변경
+            const formData = new FormData(this.self.querySelector('.modal-update-form'))
+            await this.editColumn(formData)
+
+            // 모달 Close
+            this.closeModal()
         })
     }
 
+    async editColumn(formData){
+        const modalUpdateTitle = formData.get('modal-update-title')
+
+        // DB로 insert명령을 보내는 작업
+        await this.submitColumnUpdateRequest(this.sectionId, modalUpdateTitle)
+        
+        // TODO: 왠지 input 초기화 안하면 나중에 모달 다시 열 때 문제있을듯
+
+        // view단에 변경된 컬럼 제목을 반영하는 작업
+        this.updateColumnInView(modalUpdateTitle)
+    }
+
+    async submitColumnUpdateRequest(sectionId, title){
+        const result = await fetch('http://localhost:3000/api/section/update/title', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                sectionId,
+                title
+            })
+        })
+        const isSuccess = await result.json()
+        return isSuccess
+    }
+
+    updateColumnInView(title){
+        //컬럼 제목 수정
+        const titleElement = this.container.querySelector('.column-title')
+        titleElement.innerHTML = title
+    }
+
+    openModal(){
+        util_dom.showForVisibility(this.self)
+    }
+
     closeModal(){
-        util_dom.hide(this.self)
+        util_dom.hideForVisibility(this.self)
     }
 }

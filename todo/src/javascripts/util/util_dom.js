@@ -6,6 +6,16 @@ const util_dom = {
 
     show(element, display){
         element.style.display = display
+    },
+
+    hideForVisibility(element){
+        element.style.visibility = 'hidden' 
+        element.style.opacity = 0
+    },
+
+    showForVisibility(element){
+        element.style.visibility = 'visible'
+        element.style.opacity = 1
     }
 }
 

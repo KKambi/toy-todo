@@ -8,11 +8,12 @@ $container-border-radius: 0.6rem
 
 $modal-background-color: #ffffff
 $modal-highlight-background-color: #F6F8FA
-$modal-border: 1px solid #d1d5da
+$modal-border: 0.1rem solid #d1d5da
 
 $card-box-shadow: 0 0.3rem 0.3rem #e1e4e8
 $input-box-shadow: inset 0 1px 2px rgba(27,31,35, .075)
 $input-box-focus-shadow: 0 0 0 0.2em rgba(219, 90, 119, 0.3)
+$modal-box-shadow: 0 0 2rem rgba(0,0,0,.4)
 
 $button-color: #586069
 
@@ -25,11 +26,15 @@ $button-color: #586069
     height: 100%
     overflow: auto
     background-color: rgba(0,0,0,0.4)
+    transition: visibility 0.3s, opacity 0.3s
 
 .modal-content
     width: 45rem
     background-color: $modal-background-color
     margin: 5% auto
+    border: 0.1rem solid #000000
+    border-radius: $container-border-radius
+    box-shadow: $modal-box-shadow
 
     .modal-header
         display: flex
@@ -37,7 +42,8 @@ $button-color: #586069
         height: 5rem
         padding: 1.5rem
         font-weight: 600
-        border: $modal-border
+        border-bottom: $modal-border
+        border-radius: 0.6rem 0.6rem 0 0
         background-color: $modal-highlight-background-color
     
         .modal-cancel-button
