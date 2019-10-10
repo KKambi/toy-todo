@@ -65,7 +65,7 @@ export default class Column {
         this.selfContainer = this.findSelfContainer()
         
         this.modalComponent = new Modal(this.selfContainer, this.sectionId)
-        this.renderSelf(this.modalComponent.HTML(this.name))
+        this.renderInMyself(this.modalComponent.HTML(this.name))
         this.modalComponent.init()
 
         this.toggleButton = this.findToggleButton()
@@ -90,7 +90,7 @@ export default class Column {
     }
 
     renderMain(HTML){
-        this.mainContainer.insertAdjacentHTML('beforeend', HTML)
+        this.mainContainer.insertAdjacentHTML('afterbegin', HTML)
     }
 
     
@@ -99,7 +99,7 @@ export default class Column {
         return document.querySelector(`[data-section-id="${this.sectionId}"]`);
     }
 
-    renderSelf(HTML){
+    renderInMyself(HTML){
         this.selfContainer.insertAdjacentHTML('afterbegin', HTML)
     }
 
