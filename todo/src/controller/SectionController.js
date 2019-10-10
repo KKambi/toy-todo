@@ -7,6 +7,10 @@ class SectionController {
         return await this.SectionModel.findAllByUserId(user_id)
     }
 
+    renderAllSection(allSectionData){
+        
+    }
+
     async createSection(params){
         return await this.SectionModel.create(params)    
     }

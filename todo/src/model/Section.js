@@ -4,13 +4,20 @@ const util_dbPool = require('../javascripts/util/util_dbPool')
 class Section extends IModelWithId {
     async findAllByUserId(user_id){
         try {
-            const findAllByUserIdQuery = `SELECT id, ${this.ATTRIBUTE_LIST} FROM ${this.TABLE_NAME} WHERE user_id = ?;`
-            const findAllByUserValue = [`${user_id}`]
+            const todoIdFindQuery = `SELECT * FROM toDo WHERE user_id = ?;`
+            const todoIdFindValue = [`${user_id}`]
+            const findAllByUserIdQuery = `SELECT id, ${this.ATTRIBUTE_LIST} FROM ${this.TABLE_NAME} WHERE toDo_id = ?;`
+
             const connection = await util_dbPool.pool.getConnection(async conn => conn);
             try {
-                const [ rows ] = await connection.execute(findAllByUserIdQuery, findAllByUserValue)
+                //user_id를 통해 그 유저의 todo_id를 찾는 작업
+                const [ toDo_rows ] = await connection.execute(todoIdFindQuery, todoIdFindValue)
+                const toDo_id = toDo_rows[0].id;
+                const findAllByUserValue = [`${toDo_id}`]
+
+                const [ section_rows ] = await connection.execute(findAllByUserIdQuery, findAllByUserValue)
                 connection.release();
-                return rows[0].insertId;
+                return section_rows;
             } catch(err){
                 console.log(`Query Error ~ ${err}`);
                 connection.release();
