@@ -211,47 +211,5 @@ connection.query(`
     (2, 1);
 `)
 
-connection.query(`
-    INSERT INTO section
-    (toDo_id, name, sort)
-    VALUES
-    (1, '해야할일', 1);
-`)
-
-connection.query(`
-    INSERT INTO section
-    (toDo_id, name, sort)
-    VALUES
-    (1, '하는중', 2);
-`)
-
-connection.query(`
-    INSERT INTO section
-    (toDo_id, name, sort)
-    VALUES
-    (1, '다했어', 3);
-`)
-
-connection.query(`
-    INSERT INTO section
-    (toDo_id, name, sort)
-    VALUES
-    (2, '해야할일', 1);
-`)
-
-connection.query(`
-    INSERT INTO section
-    (toDo_id, name, sort)
-    VALUES
-    (2, '하는중', 2);
-`)
-
-connection.query(`
-    INSERT INTO section
-    (toDo_id, name, sort)
-    VALUES
-    (2, '다했어', 3);
-`)
-
 //Connection end
 connection.end();
