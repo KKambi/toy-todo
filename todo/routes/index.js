@@ -3,9 +3,6 @@ const router = express.Router();
 const path = require('path');
 const fs = require('fs');
 
-const Index = require('../src/controller/IndexController')
-const IndexController = new Index()
-
 const SectionControllerClass = require('../src/controller/SectionController')
 const SectionModelClass = require('../src/model/Section')
 
@@ -17,10 +14,16 @@ const SectionController = new SectionControllerClass(
     )
 )
 
-router.get('/', async function (req, res, next){
-    const allSectionData = await SectionController.getAllSection(req.user.user_id)
-    IndexController.renderAllSection(allSectionData)
+const auth = (req, res, next) => {
+    if (!req.user){
+        res.redirect('/sessions/new')
+    }
+    else{
+        next()
+    }
+}
 
+router.get('/', auth, async function (req, res, next){
     const signed = req.cookies[process.env.SESSION_ID_NAME] ? 'true':'false'
     try{
         res.format({

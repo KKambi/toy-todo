@@ -12,6 +12,13 @@ const CardModel = new CardModelClass(
 )
 const CardController = new CardControllerClass(CardModel)
 
+// Card All Read 요청
+router.get('/all', async function (req, res, next) {
+    const user_id = req.user.user_id
+    const allCardData = await CardController.getAllCard(user_id)
+    res.json(allCardData)
+});
+
 // Card Create 요청
 router.post('/create', async function (req, res, next) {
     const params = {

@@ -83,11 +83,11 @@ app.use(sassMiddleware({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+app.use('/',  indexRouter);
 app.use('/sessions', sessionsRouter);
-app.use('/users', usersRouter);
-app.use('/admin', adminRouter);
-app.use('/api', apiRouter);
+app.use('/users',  usersRouter);
+app.use('/admin',  adminRouter);
+app.use('/api',  apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

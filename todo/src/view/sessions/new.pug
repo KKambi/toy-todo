@@ -1,7 +1,6 @@
 extends ../layout
 
 block content
-    header#header-container
     main#main-container
         h1 로그인
         form#login-form.form(action='http://localhost:3000/sessions/create' method='post')
@@ -17,3 +16,5 @@ block content
             if signed === 'false'
                 span(style='color: red;')
                     | 아이디 또는 비밀번호가 정확하지 않습니다.
+
+    script(src='/javascripts/navigation.bundle.js')

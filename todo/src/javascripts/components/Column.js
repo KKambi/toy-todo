@@ -56,7 +56,7 @@ export default class Column {
         this.mainContainer = mainContainer
         this.name = name
         this.sort = sort
-        this.cards = []
+        this.cardNumber = 0
     }
 
     init(){
@@ -93,14 +93,17 @@ export default class Column {
         this.mainContainer.lastChild.insertAdjacentHTML('beforebegin', HTML)
     }
 
-    
+    renderInMyself(HTML){
+        this.selfContainer.insertAdjacentHTML('afterbegin', HTML)
+    }
+
+    renderNumber(){
+        this.cardNumberContainer.textContent = this.cardNumber
+    }
+
     findSelfContainer(){
         // column-container
         return document.querySelector(`[data-section-id="${this.sectionId}"]`);
-    }
-
-    renderInMyself(HTML){
-        this.selfContainer.insertAdjacentHTML('afterbegin', HTML)
     }
 
     findToggleButton(){
@@ -251,13 +254,13 @@ export default class Column {
             this.cardAddButton.setAttribute('disabled', "")
 
             // 할일개수 변경
-            this.cardNumberContainer.textContent = this.cards.length
+            this.cardNumberContainer.textContent = this.cardNumber
         })
     }
 
     async createCard(formData){
         const cardContent = formData.get('content')
-        const cardSort = this.cards.length
+        const cardSort = this.cardNumber
 
         // DB로 insert명령을 보내는 작업
         const jsonResponse = await this.submitCardCreateRequest(this.sectionId, cardContent, cardSort)
@@ -287,6 +290,6 @@ export default class Column {
     createCardInView(cardId, cardContent, cardSort, cardWriter){
         const newCard = new Card(this.selfContainer, cardId, cardContent, cardSort, cardWriter)
         newCard.init()
-        this.cards.push(newCard)
+        this.cardNumber++
     }
 }

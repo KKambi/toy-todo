@@ -13,10 +13,6 @@ class NavigationController {
                 const resJson = await this.get(`${this.endpoint}/users/find`);
                 this.render(resJson);
             },
-            '/sessions/new': async () => {
-                const resJson = await this.get(`${this.endpoint}/sessions/new`);
-                this.render(resJson);
-            },
             otherwise(path) {
                 this.mainContainer.innerHTML = `${path} Not Found`;
             }
