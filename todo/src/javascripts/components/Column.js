@@ -83,6 +83,7 @@ export default class Column {
         this.addToggleEventListener()
         this.addColumnMenuEventListener()
         this.addColumnEditEventListener()
+        this.addColumnDeleteEventListener()
         this.addActivateButtonListener()
         this.addCancelButtonListener()
         this.addInsertCardEventListener()
@@ -179,7 +180,11 @@ export default class Column {
     }
 
     openModal(){
-        this.modalComponent.openModal()
+        this.modalComponent.open()
+    }
+
+    closeModal(){
+        this.modalComponent.close()
     }
 
     addActivateButtonListener(){
@@ -193,6 +198,44 @@ export default class Column {
         this.cancelButton.addEventListener('click', () => {
             this.toggleAddSection()
         })
+    }
+
+    addColumnDeleteEventListener(){
+        this.columnDeleteButton.addEventListener('click', async () => {
+            event.preventDefault()
+
+            // 칼럼 삭제 요청
+            await this.deleteColumn()
+
+            // Edit Menbu Close
+            this.toggleEditSection()
+        })
+    }
+
+    async deleteColumn(){
+        // DB로 Destroy 명령을 보내는 작업
+        await this.submitColumnDeleteRequest(this.sectionId)
+
+        // view단에 변경된 컬럼 제목을 반영하는 작업
+        this.deleteColumnInView()
+    }
+
+    async submitColumnDeleteRequest(sectionId){
+        const result = await fetch('http://localhost:3000/api/section/delete', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                sectionId
+            })
+        })
+        const isSuccess = await result.json()
+        return isSuccess
+    }
+
+    deleteColumnInView(){
+        this.selfContainer.remove()
     }
 
     addInsertCardEventListener(){

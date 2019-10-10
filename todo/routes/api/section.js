@@ -24,4 +24,15 @@ router.post('/update/title', async function (req, res, next) {
     })
 });
 
+// Column Delete 요청
+router.post('/delete', async function (req, res, next) {
+    const params = {
+        section_id: req.body.sectionId
+    }
+    const result = await SectionController.deleteSection('id', params.section_id)
+    res.json({
+        result
+    })
+});
+
 module.exports = router;

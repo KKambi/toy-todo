@@ -72,7 +72,7 @@ export default class Modal{
 
     addCancelButtonListener(){
         this.cancelButton.addEventListener('click', () => {
-            this.closeModal()
+            this.close()
         })
         document.addEventListener('click', (event) => {
             const isClickInside = this.contentContainer.contains(event.target) || event.target.className === 'column-edit-button'
@@ -88,19 +88,20 @@ export default class Modal{
             // 칼럼 제목 변경
             const formData = new FormData(this.self.querySelector('.modal-update-form'))
             await this.editColumn(formData)
-
+            
             // 모달 Close
-            this.closeModal()
+            this.close()
         })
     }
 
     async editColumn(formData){
         const modalUpdateTitle = formData.get('modal-update-title')
 
-        // DB로 insert명령을 보내는 작업
+        // DB로 Update 명령을 보내는 작업
         await this.submitColumnUpdateRequest(this.sectionId, modalUpdateTitle)
         
-        // TODO: 왠지 input 초기화 안하면 나중에 모달 다시 열 때 문제있을듯
+        // 모달 input 초기화
+        this.updateInput.value = ""
 
         // view단에 변경된 컬럼 제목을 반영하는 작업
         this.updateColumnInView(modalUpdateTitle)
@@ -127,11 +128,11 @@ export default class Modal{
         titleElement.innerHTML = title
     }
 
-    openModal(){
+    open(){
         util_dom.showForVisibility(this.self)
     }
 
-    closeModal(){
+    close(){
         util_dom.hideForVisibility(this.self)
     }
 }
