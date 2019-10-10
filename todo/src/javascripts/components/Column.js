@@ -1,7 +1,31 @@
+import '../../stylesheets/column.sass'
 import Card from './Card'
+
+//FIXME: 테스트용! 나중에 지울 것!
+import '../../stylesheets/modal.sass'
 
 const columnHTML = (sectionId, name, sort) => 
 `<div class="column-container" data-section-id="${sectionId}" data-column-sort="${sort}">
+    <div class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                Edit ${name}
+                <button class="modal-cancel-button" type="button" aria-label="Column menu">
+                    <svg class="icon icon-cancel" viewBox="0 0 12 16" version="1.1" width="12" height="16" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" enctype="multipart/form-data" class="modal-update-form">
+                    <div class="modal-label">Column name</div>
+                        <input type='text' maxlength='50' class="modal-update-title" name="modal-update-title" placeholder="Enter a column name (To Do, In Progress, Done)">
+                        <button class="modal-update-button">Update Column</button>
+                </form>
+            </div>
+        </div>
+    </div>
     <div class="column-header-container">
         <div class="column-header-title">
             <div class="column-card-number">
@@ -13,8 +37,8 @@ const columnHTML = (sectionId, name, sort) =>
         </div>
 
         <div class="column-edit-container" style="display: none">
-            <button class="column-button">Edit Column</button>
-            <button class="column-button">Delete Column</button>
+            <button class="column-edit-button">Edit Column</button>
+            <button class="column-delete-button">Delete Column</button>
         </div>
         
         <div class="column-header-menu">
@@ -24,7 +48,7 @@ const columnHTML = (sectionId, name, sort) =>
                     </path>
                 </svg>
             </button>
-            <button class="column-edit-button" type="button" aria-label="Column menu">
+            <button class="column-menu-button" type="button" aria-label="Column menu">
                 <svg class="icon icon-modify" viewBox="0 0 13 16" width="13" heigth="16" aria-hidden="true">
                     <path fill-rule="evenodd" d="M1.5 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm5 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM13 7.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z">
                     </path>
@@ -58,17 +82,19 @@ export default class Column {
         this.selfContainer = this.findSelfContainer()
 
         this.toggleButton = this.findToggleButton()
+        this.columnMenuButton = this.findColumnMenuButton()
         this.columnEditButton = this.findColumnEditButton()
+        this.columnDeleteButton = this.findColumnDeleteButton()
         this.columnEditContainer = this.findColumnEditContainer()
+        
         this.cardNumberContainer = this.findCardNumberContainer()
         this.cardAddContainer = this.findCardAddContainer()
-
         this.cardAddButton = this.findCardAddButton()
         this.cancelButton = this.findCancelButton()
         this.textArea = this.findTextArea()
 
         this.addToggleEventListener()
-        this.addColumnEditEventListener()
+        this.addColumnMenuEventListener()
         this.addActivateButtonListener()
         this.addCancelButtonListener()
         this.addInsertCardEventListener()
@@ -87,16 +113,24 @@ export default class Column {
         return this.selfContainer.querySelector('.column-toggle-button')
     }
 
-    findColumnEditButton(){
-        return this.selfContainer.querySelector('.column-edit-button')
+    findColumnMenuButton(){
+        return this.selfContainer.querySelector('.column-menu-button')
+    }
+
+    findColumnDeleteButton(){
+        return this.selfContainer.querySelector('.column-delete-button')
+    }
+
+    findCardNumberContainer(){
+        return this.selfContainer.querySelector('.column-card-number')
     }
 
     findColumnEditContainer(){
         return this.selfContainer.querySelector('.column-edit-container')
     }
-
-    findCardNumberContainer(){
-        return this.selfContainer.querySelector('.column-card-number')
+    
+    findColumnEditButton(){
+        return this.selfContainer.querySelector('.column-edit-button')
     }
 
     findCardAddContainer(){
@@ -137,12 +171,12 @@ export default class Column {
         this.toggleDisplay(this.cardAddContainer, 'block')
     }
 
-    addColumnEditEventListener(){
-        this.columnEditButton.addEventListener('click', () => {
+    addColumnMenuEventListener(){
+        this.columnMenuButton.addEventListener('click', () => {
             this.toggleEditSection()
         })
         document.addEventListener('click', (event) => {
-            const isClickInside = this.columnEditContainer.contains(event.target) || this.columnEditButton.contains(event.target)
+            const isClickInside = this.columnEditContainer.contains(event.target) || this.columnMenuButton.contains(event.target)
             if (isClickInside) return
             this.hide(this.columnEditContainer)
         })
@@ -150,6 +184,12 @@ export default class Column {
 
     toggleEditSection(){
         this.toggleDisplay(this.columnEditContainer, 'flex')
+    }
+
+    addColumnEditEventListener(){
+        this.columnEditButton.addEventListener('click', () => {
+            //TODO: open edit modal
+        })
     }
 
     addActivateButtonListener(){

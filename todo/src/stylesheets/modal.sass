@@ -1,0 +1,85 @@
+$concept-color: #DB5A77
+
+$container-border-width: 0.1rem
+$container-border-style: solid
+$container-border-color: #e1e4e8
+$container-border: $container-border-width $container-border-style $container-border-color
+$container-border-radius: 0.6rem
+
+$modal-background-color: #ffffff
+$modal-highlight-background-color: #F6F8FA
+$modal-border: 1px solid #d1d5da
+
+$card-box-shadow: 0 0.3rem 0.3rem #e1e4e8
+$input-box-shadow: inset 0 1px 2px rgba(27,31,35, .075)
+$input-box-focus-shadow: 0 0 0 0.2em rgba(219, 90, 119, 0.3)
+
+$button-color: #586069
+
+.modal
+    position: fixed
+    z-index: 1
+    left: 0
+    top: 0
+    width: 100%
+    height: 100%
+    overflow: auto
+    background-color: rgba(0,0,0,0.4)
+
+.modal-content
+    width: 45rem
+    background-color: $modal-background-color
+    margin: 5% auto
+
+    .modal-header
+        display: flex
+        justify-content: space-between
+        height: 5rem
+        padding: 1.5rem
+        font-weight: 600
+        border: $modal-border
+        background-color: $modal-highlight-background-color
+    
+        .modal-cancel-button
+            color: $button-color
+        
+        .modal-cancel-button:hover
+            color: $concept-color
+    
+    .modal-body
+        display: flex
+        justify-content: center
+        align-items: center
+
+        .modal-update-form
+            width: 100%
+            padding: 1.5rem
+
+            .modal-label
+                font-weight: 600
+                margin: 1rem 0
+
+            .modal-update-title
+                width: 100%
+                padding: 0.6rem
+                min-height: 3.5rem            
+                font-family: inherit
+                background: $modal-highlight-background-color
+                border: $container-border
+                border-radius: $container-border-radius
+                box-shadow: $input-box-shadow
+
+            .modal-update-title:focus
+                border-color: $concept-color
+                box-shadow: inset $card-box-shadow, $input-box-focus-shadow
+
+            .modal-update-button
+                color: #FFFFFF
+                margin: 1rem 0 0 0
+                padding: 1rem
+                background: linear-gradient(-180deg, #DB7189, #DF4265)
+                border: $container-border
+                border-radius: $container-border-radius
+
+            .modal-update-button:hover
+                background: linear-gradient(-180deg,#f0f3f6,#e6ebf1 90%)
