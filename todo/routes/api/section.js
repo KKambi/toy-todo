@@ -19,9 +19,9 @@ router.post('/create', async function (req, res, next) {
         name: "temp",
         sort: req.body.sectionSort
     }
-    const result = await SectionController.createSection(params)
+    const sectionId = await SectionController.createSection(params)
     res.json({
-        result
+        sectionId
     })
 });
 

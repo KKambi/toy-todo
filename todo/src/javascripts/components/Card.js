@@ -40,10 +40,12 @@ export default class Card {
     }
 
     findSelfContainer(){
-        this.columnContainer.querySelector()
+        const selfContainer = this.columnContainer.querySelector(`[data-card-sort="${this.sort}"]`)
+        return selfContainer
     }
 
     edit(newContent){
-        this.columnContainer.querySelector
+        const cardContainer = this.selfContainer.querySelector('.card-content-container')
+        cardContainer.innerHTML = newContent
     }
 }

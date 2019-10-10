@@ -42,8 +42,8 @@ const ColumnAdd = {
         if (columnContainerCollection.length === 0) return 0;  //만들어진 컬럼이 없는 경우
 
         const lastContainer = columnContainerCollection.item(columnContainerCollection.length-1)
-        let finalSort = lastContainer.getAttribute('data-column-sort')
-        return finalSort * 2
+        let finalSort = Number(lastContainer.getAttribute('data-column-sort'))
+        return (finalSort+1)*2
     },
 
     async submitSectionCreateRequest(sectionSort){
@@ -56,8 +56,8 @@ const ColumnAdd = {
                 sectionSort
             })
         })
-        const isSuccess = await result.json()
-        return isSuccess
+        const jsonData = await result.json()
+        return jsonData.sectionId
     }
 }
 
