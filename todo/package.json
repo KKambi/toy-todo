@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "nodemon": "nodemon ./bin/www",
+    "nodemon": "node ./scripts/db_initialization && nodemon ./bin/www",
     "dev": "node ./scripts/db_initialization && npm run start",
     "bundle": "webpack --watch --mode=development",
     "production": "webpack --mode=production"

@@ -33,6 +33,7 @@ module.exports = () => {
         }
 
         const user = {
+            "user_id": userRecord.id,
             "user": userRecord.user,
             "name": userRecord.name,
             "is_admin": userRecord.is_admin

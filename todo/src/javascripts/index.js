@@ -1,4 +1,10 @@
-import Column from './components/Column'
-const container = document.getElementById("main-container")
-const columnComponent = new Column(container, 4, "테스트", 4)
-columnComponent.init()
+import ColumnAdd from './components/ColumnAdd.js'
+
+const index = {
+    init(){
+        this.container = document.getElementById("main-container")
+        ColumnAdd.init(this.container)
+    }
+}
+
+index.init()
