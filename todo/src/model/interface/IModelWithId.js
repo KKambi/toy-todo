@@ -75,7 +75,6 @@ class IModelWithId {
 
     async findAll(){
         try {
-            console.log("hi")
             const findAllQuery = `SELECT id, ${this.ATTRIBUTE_LIST} FROM ${this.TABLE_NAME};`
             const connection = await util_dbPool.pool.getConnection(async conn => conn);
             try {

@@ -90,7 +90,7 @@ export default class Column {
     }
 
     renderMain(HTML){
-        this.mainContainer.insertAdjacentHTML('afterbegin', HTML)
+        this.mainContainer.lastChild.insertAdjacentHTML('beforebegin', HTML)
     }
 
     

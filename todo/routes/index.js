@@ -3,7 +3,12 @@ const router = express.Router();
 const path = require('path');
 const fs = require('fs');
 
+const Index = require('../src/controller/IndexController')
+const IndexController = new Index()
+
 router.get('/', function (req, res, next){
+    const allSectionData = IndexController.getAllSectionData(req.user.user_id)
+
     const signed = req.cookies[process.env.SESSION_ID_NAME] ? 'true':'false'
     try{
         res.format({

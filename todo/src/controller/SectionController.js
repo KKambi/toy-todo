@@ -2,6 +2,11 @@ class SectionController {
     constructor(SectionModel){
         this.SectionModel = SectionModel
     }
+
+    async getAllSection(user_id){
+        return await this.SectionModel.findAllByUserId(user_id)
+    }
+
     async createSection(params){
         return await this.SectionModel.create(params)    
     }

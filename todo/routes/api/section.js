@@ -12,6 +12,14 @@ const SectionModel = new SectionModelClass(
 )
 const SectionController = new SectionControllerClass(SectionModel)
 
+router.get('/all', async function (req, res, next) {
+    const user_id = req.body.user_id
+    const allSectionData = await SectionController.getAllSection(user_id)
+    res.json({
+        allSectionData
+    })
+});
+
 // Column Create 요청
 router.post('/create', async function (req, res, next) {
     const params = {
