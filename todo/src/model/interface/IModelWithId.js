@@ -116,6 +116,8 @@ class IModelWithId {
         try {
             const deleteQuery = `DELETE FROM ${this.TABLE_NAME} WHERE ${attribute} = ?;`
             const deleteValue = [`${identifier}`]
+            console.log(deleteQuery)
+            console.log(deleteValue)
             const connection = await util_dbPool.pool.getConnection(async conn => conn);
             try {
                 await connection.execute(deleteQuery, deleteValue);

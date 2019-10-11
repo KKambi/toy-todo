@@ -1,5 +1,5 @@
-const cardHTML = (content, sort, writer) => 
-`<div class="card-container" data-card-sort="${sort}">
+const cardHTML = (id, content, sort, writer) => 
+`<div class="card-container" draggable="true" data-card-id="${id}" data-card-sort="${sort}">
     <div class="card-header-container">
         <span class="card-document-icon">
             <svg class="icon icon-document" viewBox="0 0 14 16" width="14" heigth="16" aria-hidden="true">
@@ -29,14 +29,26 @@ export default class Card {
         this.sort = sort
         this.writer = writer
     }
-
+    
     init(){
         this.render()
         this.selfContainer = this.findSelfContainer()
+
+        //TODO: 미완성 드래그앤드롭
+        this.add_dragstart_handler(this.selfContainer)
+    }
+    
+    //TODO: 미완성 드래그앤드롭
+    add_dragstart_handler(element){
+        element.addEventListener('dragstart', (event) => {
+            event.dataTransfer.dropEffect = "move"
+            event.dataTransfer.setData("text/plain", event.target.getAttribute('data-card-id'))
+            event.dataTransfer.setData("text/plain", event.target.getAttribute('data-card-sort'))
+        })
     }
 
     render(){
-        this.columnContainer.insertAdjacentHTML('beforeend', cardHTML(this.content, this.sort, this.writer))
+        this.columnContainer.insertAdjacentHTML('beforeend', cardHTML(this.id, this.content, this.sort, this.writer))
     }
 
     findSelfContainer(){

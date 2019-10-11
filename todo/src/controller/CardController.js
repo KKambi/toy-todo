@@ -9,6 +9,10 @@ class CardController {
 
     async createCard(params){
         return await this.CardModel.create(params)
+    }    
+
+    async deleteCard(id){
+        return await this.CardModel.delete('id', id)
     }
 }
 

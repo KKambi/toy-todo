@@ -36,4 +36,14 @@ router.post('/create', async function (req, res, next) {
     })
 });
 
+// Card Delete 요청
+router.post('/delete', async function (req, res, next) {
+    const params = {
+        id: req.body.id
+    }
+    const result = await CardController.deleteCard(params.id)
+    res.json({
+        result
+    })
+});
 module.exports = router;
