@@ -42,8 +42,13 @@ export default class Card {
     add_dragstart_handler(element){
         element.addEventListener('dragstart', (event) => {
             event.dataTransfer.dropEffect = "move"
-            event.dataTransfer.setData("text/plain", event.target.getAttribute('data-card-id'))
-            event.dataTransfer.setData("text/plain", event.target.getAttribute('data-card-sort'))
+            const data = JSON.stringify({
+                id: this.id,
+                content: this.content,
+                sort: this.sort,
+                writer: this.writer
+            })
+            event.dataTransfer.setData("text/plain", data)
         })
     }
 

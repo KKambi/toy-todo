@@ -7,8 +7,8 @@ import Modal from './Modal'
 import util_dom from '../util/util_dom'
 
 
-const columnHTML = (sectionId, name, sort) => 
-`<div class="column-container" data-section-id="${sectionId}" data-column-sort="${sort}">
+const columnHTML = (sectionId, name, sort) =>
+    `<div class="column-container" data-section-id="${sectionId}" data-column-sort="${sort}">
     <div class="column-header-container">
         <div class="column-header-title">
             <div class="column-card-number">
@@ -51,7 +51,7 @@ const columnHTML = (sectionId, name, sort) =>
 </div>`
 
 export default class Column {
-    constructor(mainContainer, sectionId, name, sort){
+    constructor(mainContainer, sectionId, name, sort) {
         this.sectionId = sectionId
         this.mainContainer = mainContainer
         this.name = name
@@ -59,11 +59,11 @@ export default class Column {
         this.cardNumber = 0
     }
 
-    init(){
+    init() {
         this.renderMain(columnHTML(this.sectionId, this.name, this.sort))
 
         this.selfContainer = this.findSelfContainer()
-        
+
         this.modalComponent = new Modal(this.selfContainer, this.sectionId)
         this.renderInMyself(this.modalComponent.HTML(this.name))
         this.modalComponent.init()
@@ -73,7 +73,7 @@ export default class Column {
         this.columnEditButton = this.findColumnEditButton()
         this.columnDeleteButton = this.findColumnDeleteButton()
         this.columnEditContainer = this.findColumnEditContainer()
-        
+
         this.cardNumberContainer = this.findCardNumberContainer()
         this.cardAddContainer = this.findCardAddContainer()
         this.cardAddButton = this.findCardAddButton()
@@ -87,80 +87,154 @@ export default class Column {
         this.addActivateButtonListener()
         this.addCancelButtonListener()
         this.addInsertCardEventListener()
+
+        this.add_dragenter_handler(this.selfContainer)
+        this.add_drop_handler(this.selfContainer)
     }
 
-    renderMain(HTML){
+    //TODO: 미완성 드래그앤드롭
+    add_dragenter_handler(element) {
+        element.addEventListener('dragenter', (event) => {
+            console.log("dragenter!")
+            event.preventDefault()
+            //TODO: 컬럼 컨테이너 위로 draggable 요소가 지나갈 때
+            //TODO: 위치에 따라 주변 card container들의 위치가 변화한다
+        })
+    }
+    //TODO: 미완성 드래그앤드롭
+    add_drop_handler(element) {
+        element.addEventListener('drop', async (event) => {
+            console.log("drop!")
+            event.preventDefault();
+
+            //TODO: 컬럼 컨터이너 위로 draggable 요소를 드랍시켰을 때
+            //TODO: 원래 컬럼에서 드롭한 컬럼으로 카드가 이동한다
+            const data = JSON.parse(event.dataTransfer.getData("text/plain"))
+            const card_id = data.id
+            const card_content = data.content
+            const card_writer = data.writer
+            const card_sort = data.sort //TODO: sort 계산해서 변경해야함
+
+            // 기존 컬럼 내 카드 삭제 (only view)
+            this.deleteCardInView(card_id)
+            this.cardNumber--
+            this.cardNumberContainer.textContent = this.cardNumber
+
+            //TODO: 드랍 칼럼 내 카드 추가 (only view)
+            const dropSectionElement = event.target
+            const dropSectionId = dropSectionElement.getAttribute('data-section-id')
+            new Card(dropSectionElement, card_id, card_content, card_sort, card_writer).init()
+            dropSectionElement.cardNumber++
+            dropSectionElement.textContent = dropSectionElement.cardNumber
+
+            // 카드의 section_id, sort 업데이트
+            await this.submitCardUpdateRequest(card_id, dropSectionId)
+        })
+    }
+
+    async submitCardUpdateRequest(card_id, section_id){
+        const result = await fetch('http://localhost:3000/api/card/delete', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                target: "section_id",
+                value: section_id,
+                attribute: "id",
+                identifier: card_id
+            })
+        })
+        const isSuccess = await result.json()
+        return isSuccess
+    }
+
+    async submitCardDeleteRequest(id){
+        const result = await fetch('http://localhost:3000/api/card/delete', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                id
+            })
+        })
+        const isSuccess = await result.json()
+        return isSuccess
+    }
+
+    renderMain(HTML) {
         this.mainContainer.lastChild.insertAdjacentHTML('beforebegin', HTML)
     }
 
-    renderInMyself(HTML){
+    renderInMyself(HTML) {
         this.selfContainer.insertAdjacentHTML('afterbegin', HTML)
     }
 
-    renderNumber(){
+    renderNumber() {
         this.cardNumberContainer.textContent = this.cardNumber
     }
 
-    findSelfContainer(){
+    findSelfContainer() {
         // column-container
         return document.querySelector(`[data-section-id="${this.sectionId}"]`);
     }
 
-    findToggleButton(){
+    findToggleButton() {
         return this.selfContainer.querySelector('.column-toggle-button')
     }
 
-    findColumnMenuButton(){
+    findColumnMenuButton() {
         return this.selfContainer.querySelector('.column-menu-button')
     }
 
-    findColumnDeleteButton(){
+    findColumnDeleteButton() {
         return this.selfContainer.querySelector('.column-delete-button')
     }
 
-    findCardNumberContainer(){
+    findCardNumberContainer() {
         return this.selfContainer.querySelector('.column-card-number')
     }
 
-    findColumnEditContainer(){
+    findColumnEditContainer() {
         return this.selfContainer.querySelector('.column-edit-container')
     }
-    
-    findColumnEditButton(){
+
+    findColumnEditButton() {
         return this.selfContainer.querySelector('.column-edit-button')
     }
 
-    findCardAddContainer(){
+    findCardAddContainer() {
         return this.selfContainer.querySelector('.card-add-container')
     }
 
-    findCardAddButton(){
+    findCardAddButton() {
         return this.cardAddContainer.querySelector('.card-add-button')
     }
 
-    findCancelButton(){
+    findCancelButton() {
         return this.cardAddContainer.querySelector('.card-cancel-button')
     }
 
-    findTextArea(){
+    findTextArea() {
         return this.cardAddContainer.querySelector('.card-content')
     }
 
-    toggleDisplay(element, display){
-        element.style.display === 'none' ? util_dom.show(element, display) : util_dom.hide(element);      
+    toggleDisplay(element, display) {
+        element.style.display === 'none' ? util_dom.show(element, display) : util_dom.hide(element);
     }
 
-    addToggleEventListener(){
+    addToggleEventListener() {
         this.toggleButton.addEventListener('click', () => {
             this.toggleAddSection()
         })
     }
 
-    toggleAddSection(){
+    toggleAddSection() {
         this.toggleDisplay(this.cardAddContainer, 'block')
     }
 
-    addColumnMenuEventListener(){
+    addColumnMenuEventListener() {
         this.columnMenuButton.addEventListener('click', () => {
             this.toggleEditSection()
         })
@@ -171,39 +245,40 @@ export default class Column {
         })
     }
 
-    toggleEditSection(){
+    toggleEditSection() {
         this.toggleDisplay(this.columnEditContainer, 'flex')
     }
 
-    addColumnEditEventListener(){
+    addColumnEditEventListener() {
         this.columnEditButton.addEventListener('click', () => {
             this.toggleEditSection()
             this.openModal()
         })
     }
 
-    openModal(){
+    openModal() {
         this.modalComponent.open()
     }
 
-    closeModal(){
+    closeModal() {
         this.modalComponent.close()
     }
 
-    addActivateButtonListener(){
+    addActivateButtonListener() {
         this.textArea.addEventListener('input', () => {
             if (this.textArea.textLength > 0) this.cardAddButton.removeAttribute('disabled')
             else this.cardAddButton.setAttribute('disabled', "")
         })
     }
 
-    addCancelButtonListener(){
+    addCancelButtonListener() {
         this.cancelButton.addEventListener('click', () => {
             this.toggleAddSection()
+            this.textArea.value = ""
         })
     }
 
-    addColumnDeleteEventListener(){
+    addColumnDeleteEventListener() {
         this.columnDeleteButton.addEventListener('click', async () => {
             event.preventDefault()
 
@@ -215,7 +290,7 @@ export default class Column {
         })
     }
 
-    async deleteColumn(){
+    async deleteColumn() {
         // DB로 Destroy 명령을 보내는 작업
         await this.submitColumnDeleteRequest(this.sectionId)
 
@@ -223,7 +298,7 @@ export default class Column {
         this.deleteColumnInView()
     }
 
-    async submitColumnDeleteRequest(sectionId){
+    async submitColumnDeleteRequest(sectionId) {
         const result = await fetch('http://localhost:3000/api/section/delete', {
             method: 'POST',
             headers: {
@@ -237,11 +312,11 @@ export default class Column {
         return isSuccess
     }
 
-    deleteColumnInView(){
+    deleteColumnInView() {
         this.selfContainer.remove()
     }
 
-    addInsertCardEventListener(){
+    addInsertCardEventListener() {
         this.cardAddButton.addEventListener('click', async (event) => {
             event.preventDefault()
 
@@ -258,20 +333,20 @@ export default class Column {
         })
     }
 
-    async createCard(formData){
+    async createCard(formData) {
         const cardContent = formData.get('content')
         const cardSort = this.cardNumber
 
         // DB로 insert명령을 보내는 작업
         const jsonResponse = await this.submitCardCreateRequest(this.sectionId, cardContent, cardSort)
-        
+
         // view단에 추가된 card를 반영하는 작업
         const cardId = jsonResponse["card_id"]
         const cardWriter = jsonResponse["writer"]
         this.createCardInView(cardId, cardContent, cardSort, cardWriter)
     }
 
-    async submitCardCreateRequest(sectionId, content, cardSort){
+    async submitCardCreateRequest(sectionId, content, cardSort) {
         const result = await fetch('http://localhost:3000/api/card/create', {
             method: 'POST',
             headers: {
@@ -287,9 +362,14 @@ export default class Column {
         return cardId
     }
 
-    createCardInView(cardId, cardContent, cardSort, cardWriter){
+    createCardInView(cardId, cardContent, cardSort, cardWriter) {
         const newCard = new Card(this.selfContainer, cardId, cardContent, cardSort, cardWriter)
         newCard.init()
         this.cardNumber++
+    }
+
+    deleteCardInView(cardId){
+        const card = this.selfContainer.querySelector(`[data-card-id="${cardId}"]`)
+        card.remove()
     }
 }
